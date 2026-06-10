@@ -2,6 +2,7 @@ import connection from "../data/db.js";
 import addReview from "../data/queries/addReview.js";
 import getReviewBySlug from "../data/queries/getReviewBySlug.js";
 import reviewSelectAllForProduct from "../data/queries/reviewSelectAllForProduct.js";
+import deleteReview from "../data/queries/deleteReview.js";
 
 const reviewController = {
     index,
@@ -66,8 +67,22 @@ function modify(request, response) {
 
 }
 
-function destroy(request, response) {
+async function destroy(request, response) {
+    const {error, result} = await deleteReview(request);
+    if(error === 404){
+        return response.status(404).json({
+            error: "Non è stata trovata la review",
+            result: null
+        });
+    }
+    if(error === 500){
+        return response.status(500).json({
+            error: "C'è stato un problema nella delete",
+            result: null
+        });
+    }
 
+    response.sendStatus(204);
 }
 
 export default reviewController;

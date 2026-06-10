@@ -2,12 +2,12 @@ import connection from "../data/db.js";
 import { validateSlug } from "../utils_js/validation/validateSlug.js";
 
 export async function checkReviewSlugExists(request, response, next) {
-
+    
     const validatedSlug = validateSlug(request.params.reviewSlug);
     if(validatedSlug === null) {
         return response.status(400).json({
-            success: false,
-            message: "Slug non valida",
+            error: "Slug non valida",
+            result: null
         });
     }
 
@@ -22,6 +22,7 @@ export async function checkReviewSlugExists(request, response, next) {
         }
 
         request.reviewSlug = validatedSlug;
+        request.foundReview = rows;
 
         return next();
     } catch(error) {

@@ -14,8 +14,8 @@ reviewRouter.get("/:reviewSlug", [checkReviewSlugExists, reviewController.show])
 
 reviewRouter.post("/", reviewController.store);
 
-reviewRouter.patch("/:slug", reviewController.modify);
+reviewRouter.patch("/:reviewSlug", reviewController.modify);
 
-reviewRouter.delete("/:slug", reviewController.destroy);
+reviewRouter.delete("/:reviewSlug", [checkReviewSlugExists, reviewController.destroy]);
 
 export default reviewRouter;
