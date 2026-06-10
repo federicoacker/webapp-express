@@ -1,4 +1,5 @@
 import connection from "../data/db.js";
+import categories from "./categories.js";
 
 const products = [
     {
@@ -365,11 +366,41 @@ const products = [
 async function insertIntoDB(){
     const insertQuery = `
     INSERT INTO products(name, description, image, price, geological_era, slug)
-    VALUES (?, ?, ?, ?, ?, ?)`
+    VALUES (?, ?, ?, ?, ?, ?);`
     for(const product of products){
         await connection.execute(insertQuery, [product.name, product.description, product.image, product.price, product.geological_era, product.slug]);
     }
-    connection.release();
+    const categoryQuery = `
+    INSERT INTO categories (slug, label, description, image)
+    VALUES (?, ?, ?, ?);`
+    for(const category of categories){
+        await connection.execute(categoryQuery, [category.slug, category.label, category.description, category.image]);
+    }
+    const linkQuery = `
+    INSERT INTO category_product(product_id, category_id)
+    VALUES(?, ?);
+    `
+    const selectCategories = `
+    SELECT c.id, c.slug
+    FROM categories as c;`
+
+    const selectProducts = `
+    SELECT p.id, p.slug
+    FROM products as p;`
+
+    const [dbProducts] = await connection.execute(selectProducts);
+    const [dbCategories] = await connection.execute(selectCategories);
+
+    console.log(dbProducts);
+    for(const product of products){
+        const connectedCategoryId = dbCategories.find(category => product.categories.includes(category.slug))?.id;
+        const connectedProductId = dbProducts.find(dbProduct => dbProduct.slug === product.slug)?.id;
+        if(connectedCategoryId && connectedProductId){
+            await connection.execute(linkQuery, [connectedProductId, connectedCategoryId]);
+        }
+    }
+
+    connection.end();
 }
 
 await insertIntoDB();
