@@ -5,19 +5,20 @@ async function deleteReview (request) {
     const foundReview = request.foundReview;
     
     if(!foundReview){
-        return response.status(404).json({
-            error: "Non è stata trovata questa review nel db",
-            result: null
-        });
+        return {error:404, result: null}; 
     }
 
     const deleteQuery = `
     DELETE FROM reviews WHERE slug = ?
     `
+    try{
+        const result = await connection.execute(deleteQuery, [reviewSlug]);
+        return {error:null, result:result[0]};
+    }
+    catch(error){
+        return {error:500, result:null};
+    }
 
-    const result = await connection.execute(deleteQuery, [reviewSlug]);
-
-    return result[0];
 }
 
 export default deleteReview;

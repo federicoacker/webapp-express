@@ -1,3 +1,5 @@
+import connection from "../db.js";
+
 async function getReviewBySlug(request) {
     const slug = request.reviewSlug;
     const querySelect = `
