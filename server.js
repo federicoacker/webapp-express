@@ -1,4 +1,5 @@
 import express from 'express';
+import reviewRouter from './routers/reviews';
 
 const url = process.env.SERVER_URL;
 const port = process.env.SERVER_PORT || 3000;
@@ -6,6 +7,8 @@ const port = process.env.SERVER_PORT || 3000;
 const app = express();
 
 app.use(express.static('public'));
+
+app.use("/products/:productSlug/reviews", reviewRouter);
 
 app.get("/", (request, response) => {
     response.json({
