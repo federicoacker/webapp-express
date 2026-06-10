@@ -1,0 +1,21 @@
+async function getReviewBySlug(request) {
+    const slug = request.reviewSlug;
+    const querySelect = `
+    SELECT title, description, vote, likes, date FROM reviews WHERE slug = ?
+    `
+    try {
+        const [reviewRows] = await connection.execute(querySelect,[slug]);
+
+        if (reviewRows.length === 0) {
+            return { result: null, error: 404 }
+        }
+
+        return {result: reviewRows, error:null};
+
+    } catch (error) {
+        console.error(error);
+        return { result: null, error: 500 }
+    }
+}
+
+export default getReviewBySlug;
