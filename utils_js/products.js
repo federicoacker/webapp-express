@@ -1,5 +1,6 @@
 import connection from "../data/db.js";
 import categories from "./categories.js";
+import reviews from "./reviews.js";
 
 const products = [
     {
@@ -398,6 +399,13 @@ async function insertIntoDB(){
         if(connectedCategoryId && connectedProductId){
             await connection.execute(linkQuery, [connectedProductId, connectedCategoryId]);
         }
+    }
+    const insertReviewQuery=`
+    INSERT INTO reviews(title, description, vote, likes, product_id, slug)
+    VALUES (?, ?, ?, ?, ?, ?)
+    `
+    for(const review of reviews){
+        await connection.execute(insertReviewQuery, [review.title, review.description, review.vote, review.likes, review.product_id, review.slug]);
     }
 
     connection.end();
