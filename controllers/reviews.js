@@ -32,7 +32,7 @@ async function index(request, response) {
 }
 
 async function show(request, response) {
-    const { result: foundReview, error } = await getReviewBySlug(request);
+    const { result: foundReview, error } = await getReviewBySlug(request.params.reviewSlug);
     if (error === 404) {
         return response.status(404).json({
             error: "Review non trovata",
@@ -52,8 +52,8 @@ async function show(request, response) {
 }
 
 async function store(request, response) {
-    const reviewId = await addReview(request);
-    if (!reviewId) {
+    const {result: reviewId, error} = await addReview(request);
+    if (error) {
         return response.status(500).json({
             error: "C'è stato un errore nell'inserimento della review",
             result: null
@@ -66,7 +66,7 @@ async function store(request, response) {
 
 }
 
-function modify(request, response) {
+async function modify(request, response) {
     const slug = request.params.reviewSlug;
     const reviewToUpdate = request.validateReview;//mi aspetto un middleware che valida i dati
 
@@ -83,7 +83,7 @@ function modify(request, response) {
 
         response.json({
             error: null,
-            result: results
+            result: results[0]
         });
 
     } catch (error) {
