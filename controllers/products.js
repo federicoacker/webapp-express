@@ -24,7 +24,7 @@ async function index(request, response) {
     });
 }
 
-function show(request, response) {
+async function show(request, response) {
     const slug = request.params.productSlug;
     const results = await getProductBySlug(slug);
 
@@ -49,7 +49,7 @@ function show(request, response) {
 
 }
 
-function destroy(request, response) {
+async function destroy(request, response) {
     const slug = request.params.productSlug;
     const results = await deleteProducts(slug);
 

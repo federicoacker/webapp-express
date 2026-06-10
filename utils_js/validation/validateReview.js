@@ -1,28 +1,29 @@
+import { validateNumber } from "./validateNumber.js";
+import { validateString } from "./validateString.js";
 
 const validFields = new Set(
-    ["title", "description", "vote", "likes","product_id"]
+    ["title", "description", "vote", "likes"]
 );
 
 function switchValidator(key, reviewPayload){
-    let errors = [];
     let result;
     switch(key){
         case "title":
             result = validateString(reviewPayload[key]);
             if(!result){
-                errors.push("Il titolo non è valido");
+                return "Il titolo non è valido";
             }
             break;
         case "vote":
             result = validateNumber(reviewPayload[key]);
             if(!result || result < 0 || result > 5){
-                errors.push("Il voto inserito non è valido");
+                return "Il voto inserito non è valido";
             }
             break;
         case "likes":
-            result = validateString(reviewPayload[key]);
+            result = validateNumber(reviewPayload[key]);
             if(!result || result < 0){
-                errors.push("I likes inseriti non sono validi");
+                return "I likes inseriti non sono validi";
             }
             break;
         case "description":
@@ -31,24 +32,40 @@ function switchValidator(key, reviewPayload){
         default:
             break;
     }
-
-    return errors;
 }
 
 function validateReview(reviewPayload, isPatch = true){
-
-    const fieldsReceived = new Set(Object.keys(reviewPayload));
+    
+    let errors = [];
+    const fieldsReceived = new Set(Object.getOwnPropertyNames(reviewPayload));
     // Vediamo prima se le fields ricevute sono contenute tra le mie valid fields (per la patch) 
     // o contengono almeno tutte le validFields (per la create)
     const isValidFields = isPatch ? fieldsReceived.isSubsetOf(validFields) : fieldsReceived.isSupersetOf(validFields);
     // Vediamo se ci sono fields diverse (per la create e per la patch)
     const extraFields = fieldsReceived.difference(validFields);
+    console.log(extraFields);
     // Vediamo se ci sono fields mancanti (per la create);
     const missingFields = isPatch ? [] : validFields.difference(fieldsReceived);
 
-
-    let errors = [];
-    for(const key of Object.keys(reviewPayload)){
-        errors = switchValidator(key, reviewPayload);
+    if(!isPatch && missingFields.size !== 0){
+        errors.push("Mancano delle fields nella review passata al server");
     }
+    if(extraFields.size !== 0){
+        errors.push("Ci sono fields extra non esistenti nel db per le reviews");
+    }
+    if(!isValidFields){
+        errors.push("Le fields inserite non corrispondono con quelle che si aspetta il db");
+    }
+
+
+    for(const key of Object.getOwnPropertyNames(reviewPayload)){
+        const validatorResult = switchValidator(key, reviewPayload);
+        if(validatorResult){
+            errors.push(validatorResult);
+        }
+    }
+
+    return {result:reviewPayload, errors};
 }
+
+export default validateReview;

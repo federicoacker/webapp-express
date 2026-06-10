@@ -1,3 +1,4 @@
+import createSlug from "../../utils_js/createSlug.js";
 import connection from "../db.js";
 
 
@@ -10,14 +11,23 @@ async function updateReview(slug, reviewToUpdate) {
         SET title = ?
         WHERE slug = ?;
         `;
+        const updateSlugQuery = `
+        UPDATE reviews
+        SET slug = ?
+        WHERE slug = ?;
+        `
         try{
-
-            result.push(await connection.execute(updateQuery, [title, slug]));
+            const titleResult = await connection.execute(updateQuery, [title, slug]);
+            result.push(titleResult);
+            if(titleResult.changedRows > 0){
+                const newSlug = await createSlug(title);
+                result.push(await connection.execute(updateSlugQuery, [newSlug, slug]));
+            }
         }catch(error){
             return {error:500, result:null};
         }
     }
-
+    console.log(description);
     if(description){
         const updateQuery = `
         UPDATE reviews
