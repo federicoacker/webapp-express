@@ -1,18 +1,18 @@
 import connection from "../data/db.js";
 import { validateSlug } from "../utils_js/validation/validateSlug.js";
 
-export async function checkProductSlugExists(request, response, next) {
-    const validatedSlug = validateSlug(request.params.productSlug);
-
+export async function checkReviewSlugExists(request, response, next) {
+    
+    const validatedSlug = validateSlug(request.params.reviewSlug);
     if(validatedSlug === null) {
         return response.status(400).json({
-            success: false,
-            message: "Slug non valida",
+            error: "Slug non valida",
+            result: null
         });
     }
 
     try {
-        const sql = `SELECT id, name, slug FROM products WHERE slug = ? LIMIT 1`;
+        const sql = `SELECT title, slug FROM reviews WHERE slug = ? LIMIT 1`;
         const [rows] = await connection.query(sql, [validatedSlug]);
         if(rows.length === 0) {
             return response.status(404).json({
@@ -21,9 +21,8 @@ export async function checkProductSlugExists(request, response, next) {
             });
         }
 
-        request.productSlug = validatedSlug;
-        request.product = rows;
-        request.productId = rows.id;
+        request.reviewSlug = validatedSlug;
+        request.foundReview = rows;
 
         return next();
     } catch(error) {

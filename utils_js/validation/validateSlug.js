@@ -9,7 +9,7 @@ export function validateSlug(value) {
         return null;
     }
 
-    if(/^\d+$/.test(trimmedValue)){
+    if(!(/^\D+$/.test(trimmedValue))){
         return null;
     }
 
