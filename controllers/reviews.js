@@ -72,7 +72,7 @@ async function store(request, response) {
     const reviewId = await addReview(request);
     if(!reviewId){
         return response.status(500).json({
-            error: "C'è stato un errore nell'inserimento della review";
+            error: "C'è stato un errore nell'inserimento della review",
             result: null
         });
     }
