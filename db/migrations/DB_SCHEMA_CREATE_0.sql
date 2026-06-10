@@ -10,6 +10,7 @@ CREATE TABLE `products`(
     `description` TEXT NOT NULL,
     `image` VARCHAR(255) NOT NULL,
     `price` DECIMAL(4, 2) NOT NULL,
+    `geological_era` VARCHAR(255) NOT NULL,
     `slug` VARCHAR(255) NOT NULL
 );
 ALTER TABLE
