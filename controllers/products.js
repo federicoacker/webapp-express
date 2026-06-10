@@ -1,4 +1,5 @@
 import connection from "../data/db.js";
+import productSelectAll from "../data/queries/productSelectAll.js";
 import deleteProducts from "../data/queries/deleteProducts.js";
 import getProductBySlug from "../data/queries/getProductBySlug.js"
 
@@ -20,22 +21,22 @@ async function index(request, response) {
 
     response.json({
         error: null,
-        result: results
+        result: result
     });
 }
 
 async function show(request, response) {
-    const slug = request.params.productSlug;
-    const results = await getProductBySlug(slug);
+    const slug = request.productSlug;
+    const result = await getProductBySlug(slug);
 
-    if (!results) {
+    if (!result) {
         return response.status(500).json({
             error: 'errore nel recupero del prodotto',
             result: null
         })
     }
 
-    if (results.length === 0) {
+    if (result.length === 0) {
         return response.status(404).json({
             error: 'prodotto non trovato',
             result: null
@@ -44,7 +45,7 @@ async function show(request, response) {
 
     response.json({
         error: null,
-        result: results[0]
+        result: result[0]
     });
 
 }

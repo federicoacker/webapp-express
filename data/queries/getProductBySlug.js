@@ -1,6 +1,6 @@
 import connection from "../db.js"
 
-async function getProductBySlug() {
+async function getProductBySlug(slug) {
     const querySelect = `
     SELECT name, description, price, image
     FROM products
