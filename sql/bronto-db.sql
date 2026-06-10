@@ -23,7 +23,7 @@ ALTER TABLE
     `categories` ADD UNIQUE `categories_label_unique`(`label`);
 CREATE TABLE `reviews`(
     `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `product_id` BIGINT NOT NULL,
+    `product_id` BIGINT UNSIGNED NOT NULL,
     `slug` VARCHAR(255) NOT NULL,
     `title` VARCHAR(255) NOT NULL,
     `description` TEXT NULL,
@@ -36,8 +36,8 @@ ALTER TABLE
 ALTER TABLE
     `reviews` ADD UNIQUE `reviews_slug_unique`(`slug`);
 CREATE TABLE `category_product`(
-    `product_id` BIGINT NOT NULL,
-    `category_id` BIGINT NOT NULL,
+    `product_id` BIGINT UNSIGNED NOT NULL,
+    `category_id` BIGINT UNSIGNED NOT NULL,
     PRIMARY KEY(`product_id`, `category_id`)
 );
 ALTER TABLE
