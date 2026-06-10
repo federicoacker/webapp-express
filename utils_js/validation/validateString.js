@@ -3,5 +3,5 @@ export function validateString(value) {
         return null;
     }
 
-    return value;
+    return value.trim();
 }

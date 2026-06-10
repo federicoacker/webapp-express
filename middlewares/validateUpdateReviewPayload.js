@@ -11,7 +11,22 @@ export function validateUpdateReviewPayload(request, response, next){
         else if(key === "vote"){
             result = validateNumber(reviewPayload[key]);
         }
-        if(result === null){
+        else if (key === "likes"){
+            result = validateNumber(reviewPayload[key]);
+        }
+        if(key === "likes" && (!result || result < 0)){
+            return response.status(400).json({
+                error:`${key} ha ricevuto un valore non valido`,
+                result: null
+            });
+        }
+        if(key === "vote" && (!result || result < 0 || result > 5)){
+            return response.status(400).json({
+                error:`${key} ha ricevuto un valore non valido`,
+                result: null
+            })
+        }
+        if(key === "title" && (result === null)){
             return response.status(400).json({
                 error:`${key} ha ricevuto un valore non valido`,
                 result: null

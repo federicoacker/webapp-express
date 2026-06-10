@@ -2,8 +2,8 @@ import connection from "../db.js";
 
 
 async function updateReview(slug, reviewToUpdate) {
-    const { title, description, vote } = reviewToUpdate;
-
+    const { title, description, vote, likes } = reviewToUpdate;
+    let result = [];
     if(title){
         const updateQuery = `
         UPDATE reviews
@@ -11,9 +11,8 @@ async function updateReview(slug, reviewToUpdate) {
         WHERE slug = ?;
         `;
         try{
-            console.log(slug);
-            console.log(title);
-            const result = await connection.execute(updateQuery, [title, slug]);
+
+            result.push(await connection.execute(updateQuery, [title, slug]));
         }catch(error){
             return {error:500, result:null};
         }
@@ -26,8 +25,8 @@ async function updateReview(slug, reviewToUpdate) {
         WHERE slug = ?;
         `;
         try{
-            console.log(description);
-            const result = await connection.execute(updateQuery, [description, slug]);
+
+            result.push(await connection.execute(updateQuery, [description, slug]));
         }catch(error){
             return {error:500, result:null};
         }
@@ -39,13 +38,24 @@ async function updateReview(slug, reviewToUpdate) {
         WHERE slug = ?;
         `;
         try{
-            console.log(vote);
-            const result = await connection.execute(updateQuery, [vote, slug]);
+            result.push(await connection.execute(updateQuery, [vote, slug]));
         }catch(error){
             return {error:500, result:null};
         }
     }
 
-    return {error:null, result:"Patch fatta!"};
+    if(likes){
+        const updateQuery = `
+        UPDATE reviews
+        SET likes = ?
+        WHERE slug = ?;
+        `;
+        try{
+            const result = await connection.execute(updateQuery, [likes, slug]);
+        }catch(error){
+            return {error:500, result:null};
+        }
+    }
+    return {error:null, result};
 }
 export default updateReview
