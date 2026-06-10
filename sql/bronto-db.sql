@@ -46,3 +46,9 @@ ALTER TABLE
     `reviews` ADD CONSTRAINT `reviews_product_id_foreign` FOREIGN KEY(`product_id`) REFERENCES `products`(`id`);
 ALTER TABLE
     `category_product` ADD CONSTRAINT `category_product_category_id_foreign` FOREIGN KEY(`category_id`) REFERENCES `categories`(`id`);
+
+ALTER TABLE
+	`products` ADD COLUMN `created_at` TIMESTAMP NOT NULL;
+    
+ALTER TABLE
+	`products` ADD COLUMN `updated_at` TIMESTAMP NOT NULL;
