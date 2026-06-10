@@ -1,18 +1,17 @@
 import connection from "../db.js"
 
-function deleteProducts() {
-    const 
+function deleteProducts(slug) {
 
     const deleteQuery = `
     DELETE FROM products WHERE slug = ?
     `;
 
     try {
-        const result = await connection.execute(deleteQuery, [reviewSlug]);
-        return { error: null, result: result };
+        const results = await connection.execute(deleteQuery, [slug]);
+        return results;
     }
     catch (error) {
-        return { error: 500, result: null };
+        return null;
     }
 }
 export default deleteProducts

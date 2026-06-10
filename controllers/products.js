@@ -1,4 +1,6 @@
-import deleteProducts from "../data/queries/deleteProducts";
+import connection from "../data/db.js";
+import deleteProducts from "../data/queries/deleteProducts.js";
+import getProductBySlug from "../data/queries/getProductBySlug.js"
 
 const productController = {
     index,
@@ -23,23 +25,44 @@ async function index(request, response) {
 }
 
 function show(request, response) {
+    const slug = request.params.productSlug;
+    const results = await getProductBySlug(slug);
+
+    if (!results) {
+        return response.status(500).json({
+            error: 'errore nel recupero del prodotto',
+            result: null
+        })
+    }
+
+    if (results.length === 0) {
+        return response.status(404).json({
+            error: 'prodotto non trovato',
+            result: null
+        })
+    }
+
+    response.json({
+        error: null,
+        result: results[0]
+    });
 
 }
 
 function destroy(request, response) {
     const slug = request.params.productSlug;
-    const result = await deleteProducts(slug);
+    const results = await deleteProducts(slug);
 
-    if (!result) {
+    if (!results) {
         return response.status(500).json({
-            error: "...",
+            error: "errore nell'eliminazione del prodotto",
             result: null
         })
     }
 
     if (results.affectedRows === 0) {
         return response.status(404).json({
-            error: "...",
+            error: "prodotto non trovato",
             result: null
         })
     }
