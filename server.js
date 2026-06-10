@@ -1,5 +1,5 @@
 import express from 'express';
-import reviewRouter from './routers/reviews';
+import reviewRouter from './routers/reviews.js';
 
 const url = process.env.SERVER_URL;
 const port = process.env.SERVER_PORT || 3000;

@@ -8,7 +8,7 @@ reviewRouter.use(express.json());
 
 reviewRouter.get("/", reviewController.index);
 
-reviewRouter.get("/:slug", reviewController.show);
+reviewRouter.get("/:reviewSlug", reviewController.show);
 
 reviewRouter.post("/", reviewController.store);
 

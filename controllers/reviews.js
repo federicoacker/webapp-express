@@ -1,6 +1,6 @@
-import connection from "../data/db";
-import addReview from "../data/queries/addReview";
-import reviewSelectAll from "../data/queries/reviewSelectAllForProduct";
+import connection from "../data/db.js";
+import addReview from "../data/queries/addReview.js";
+import reviewSelectAll from "../data/queries/reviewSelectAllForProduct.js";
 
 const reviewController = {
     index,
@@ -27,25 +27,16 @@ async function index (request, response) {
 }
 
 async function show(request, response) {
-    const slug = request.slug
-    const results = await reviewSelectAllForProduct(slug);
-
-    if (!results) {
-        return response.status(500)
-            .json({
-                error: "",
-                result: null
-            })
-    }
-
+    const slug = request.params.reviewSlug;
+    console.log(slug);
     try {
         const [productRows] = await connection.execute(
-            'SELECT * FROM products WHERE slug = ?',
+            'SELECT title, description, vote, likes, date FROM reviews WHERE slug = ?',
             [slug]
         );
 
         if (productRows.length === 0) {
-            response.status(404)
+            return response.status(404)
                 .json({
                     error: 'prodotto non trovato',
                     result: null
@@ -54,7 +45,7 @@ async function show(request, response) {
 
         response.json({
             error: null,
-            result: productRows[0]
+            result: productRows
         })
 
     } catch (error) {
