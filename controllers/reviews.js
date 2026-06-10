@@ -1,4 +1,5 @@
 import connection from "../data/db";
+import addReview from "../data/queries/addReview";
 import reviewSelectAll from "../data/queries/reviewSelectAllForProduct";
 
 const reviewController = {
@@ -67,7 +68,18 @@ async function show(request, response) {
 
 }
 
-function store(request, response) {
+async function store(request, response) {
+    const reviewId = await addReview(request);
+    if(!reviewId){
+        return response.status(500).json({
+            error: "C'è stato un errore nell'inserimento della review";
+            result: null
+        });
+    }
+    response.status(201).json({
+        error:null,
+        result: reviewId
+    });
 
 }
 
