@@ -12,7 +12,7 @@ export async function checkReviewSlugExists(request, response, next) {
     }
 
     try {
-        const sql = `SELECT id, title, slug FROM reviews WHERE slug = ? LIMIT 1`;
+        const sql = `SELECT title, slug FROM reviews WHERE slug = ? LIMIT 1`;
         const [rows] = await connection.query(sql, [validatedSlug]);
         if(rows.length === 0) {
             return response.status(404).json({

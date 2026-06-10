@@ -1,7 +1,7 @@
 import connection from "../data/db.js";
 import addReview from "../data/queries/addReview.js";
 import getReviewBySlug from "../data/queries/getReviewBySlug.js";
-import reviewSelectAll from "../data/queries/reviewSelectAllForProduct.js";
+import reviewSelectAllForProduct from "../data/queries/reviewSelectAllForProduct.js";
 
 const reviewController = {
     index,
@@ -13,7 +13,7 @@ const reviewController = {
 
 async function index(request, response) {
     const slug = request.productSlug // Mi aspetto che ci sia un middleware che valida le slug e me le salva in questo campo.
-    const results = await reviewSelectAllForProduct(productSlug);
+    const results = await reviewSelectAllForProduct(slug);
     if (!results) {
         return response.status(500).json({
             error: "",
