@@ -17,34 +17,29 @@ const reviewController = {
 
 async function index(request, response) {
     const slug = request.productSlug // Mi aspetto che ci sia un middleware che valida le slug e me le salva in questo campo.
-    const results = await reviewSelectAllForProduct(slug);
-    if (!results) {
+    const {result, error} = await reviewSelectAllForProduct(slug);
+    console.log(error);
+    if (error === 500) {
         return response.status(500).json({
-            error: "",
+            error: "C'è stato un errore nel fetchare le review per questo prodotto",
             result: null
         })
+    }
+    if (error === 404){
+        return response.status(404).json({
+            error: "Non sono state trovate review per questo prodotto",
+            result: null
+        });
     }
 
     response.json({
         error: null,
-        result: results
+        result
     });
 }
 
 async function show(request, response) {
-    const { result: foundReview, error } = await getReviewBySlug(request.params.reviewSlug);
-    if (error === 404) {
-        return response.status(404).json({
-            error: "Review non trovata",
-            result: null
-        });
-    }
-    if ( error === 500 ){
-        return response.status(500).json({
-            error: "C'è stato un problema nel recuperare i dati della review dal db",
-            result: null
-        });
-    }
+    const foundReview = request.foundReview;
     return response.json({
         error: null,
         result: foundReview

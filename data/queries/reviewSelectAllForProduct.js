@@ -11,10 +11,13 @@ async function reviewSelectAllForProduct(slug){
 
     try{
         const results = await connection.execute(querySelect, [slug]);
-        return results[0];
+        if(results[0].length === 0){
+            return {result:null, error:404};
+        }
+        return {result:results[0], error:null};
     }
     catch (error){
-        return null;
+        return {result:null, error:500};
     }
 }
 
