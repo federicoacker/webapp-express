@@ -1,4 +1,4 @@
-export function validateParamIsString(value) {
+export function validateString(value) {
     if (typeof value !== "string") {
         return null;
     }
