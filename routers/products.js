@@ -6,10 +6,10 @@ const productRouter = express.Router();
 
 productRouter.use(express.json());
 
-productRouter.get("/", productController.index)
+productRouter.get("/", productController.index);
 
-productRouter.get("/", productController.show)
+productRouter.get("/", productController.show);
 
-productRouter.delete("/", productController.delete)
+productRouter.delete("/", productController.destroy);
 
 export default productRouter;

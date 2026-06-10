@@ -15,3 +15,5 @@ function show (request, response) {
 function destroy (request, response) {
 
 }
+
+export default productController;
