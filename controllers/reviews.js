@@ -1,3 +1,5 @@
+import reviewSelectAll from "../data/queries/reviewSelectAllForProduct";
+
 const reviewController = {
     index,
     show,
@@ -6,8 +8,20 @@ const reviewController = {
     destroy
 }
 
-function index (request, response) {
+async function index (request, response) {
+    const slug = request.slug // Mi aspetto che ci sia un middleware che valida le slug e me le salva qui.
+    const results = await reviewSelectAllForProduct(slug);
+    if(!results){
+        return response.status(500).json({
+            error: "",
+            result: null
+        })
+    }
 
+    response.json({
+        error: null,
+        result: results
+    });
 }
 
 function show (request, response) {
@@ -23,7 +37,7 @@ function modify (request, response) {
 }
 
 function destroy (request, response){
-    
+
 }
 
 export default reviewController;
