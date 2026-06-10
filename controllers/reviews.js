@@ -79,23 +79,25 @@ async function modify(request, response) {
             });
         }
         
-        if (result.affectedRows === 0) {
-            return response.status(404)
-                .json({
-                    error: "review non trovata",
-                    result: null
-                });
+        for(let i=0; i<result.length; i++){
+            if (result[i].affectedRows === 0) {
+                return response.status(404)
+                    .json({
+                        error: "review non trovata",
+                        result: null
+                    });
+            }
         }
 
         response.json({
             error: null,
-            result: result[0]
+            result: result
         });
 
     } catch (error) {
         console.error(error);
         response.status(500).json({
-            error: "errore del server",
+            error: "Errore nell'update della review",
             result: null
         });
     }

@@ -1,20 +1,22 @@
-import { error } from "node:console";
-import { resourceUsage } from "node:process";
+import { validateNumber } from "../utils_js/validation/validateNumber.js";
+import { validateString } from "../utils_js/validation/validateString.js";
 
 export function validateReviewPayload(request, response, next){
-    const {title, vote } = request.body;
+    const reviewPayload = request.body;
+    const {title, vote} = reviewPayload;
 
     //title: obbligatorio, stringa non vuota
-    if(typeof title !== "string" || title.trim().length === 0){
+    const validatedTitle = validateString(title);
+    if(!validatedTitle){
         return response.status(400).json({
             error: "Title non valido",
             result: null
         });
     }
-
+    
     //vote: obbligatorio, numero intero tra 0 e 5
-    const parsedVote = Number(vote);
-    if(!Number.isInteger(parsedVote) || parsedVote < 0 || parsedVote > 5 ){
+    const validatedVote = validateNumber(vote);
+    if(!validatedVote || validatedVote < 0 || validatedVote > 5){
         return response.status(400).json({
             error: "Vote non valido",
             result: null
@@ -22,9 +24,9 @@ export function validateReviewPayload(request, response, next){
     }
 
     //normalizzazione
-    request.body.title = title.trim();
-    request.body.vote = parsedVote;
-    request.validatedReview = request.body;
+    reviewPayload.title = validatedTitle;
+    reviewPayload.vote = validatedVote;
+    request.validatedReview = reviewPayload;
     
     next();
 }
