@@ -9,7 +9,7 @@ const app = express();
 
 app.use(express.static('public'));
 
-app.use("/product", productRouter);
+app.use("/products", productRouter);
 
 app.use("/products/:productSlug/reviews", [checkProductSlugExists, reviewRouter]);
 

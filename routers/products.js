@@ -8,8 +8,8 @@ productRouter.use(express.json());
 
 productRouter.get("/", productController.index);
 
-productRouter.get("/", productController.show);
+productRouter.get("/:productSlug", productController.show);
 
-productRouter.delete("/", productController.destroy);
+productRouter.delete("/:productSlug", productController.destroy);
 
 export default productRouter;
