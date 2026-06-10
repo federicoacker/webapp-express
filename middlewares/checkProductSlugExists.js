@@ -24,7 +24,6 @@ export async function checkProductSlugExists(request, response, next) {
         request.productSlug = validatedSlug;
         request.product = rows[0];
         request.productId = rows[0].id;
-        console.log(rows[0].id);
         return next();
     } catch(error) {
         return response.status(500).json({

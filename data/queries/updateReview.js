@@ -51,7 +51,7 @@ async function updateReview(slug, reviewToUpdate) {
         WHERE slug = ?;
         `;
         try{
-            const result = await connection.execute(updateQuery, [likes, slug]);
+            result.push(await connection.execute(updateQuery, [likes, slug]));
         }catch(error){
             return {error:500, result:null};
         }
