@@ -1,3 +1,9 @@
+DROP TABLE IF EXISTS `reviews`;
+DROP TABLE IF EXISTS `product_category`;
+DROP TABLE IF EXISTS `categories`;
+DROP TABLE IF EXISTS `products`;
+
+
 CREATE TABLE `products`(
     `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `name` VARCHAR(150) NOT NULL,
@@ -26,7 +32,7 @@ ALTER TABLE
     
 CREATE TABLE `reviews`(
     `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `product_id` BIGINT UNSIGNED NOT NULL,
+    `product_id` BIGINT UNSIGNED NULL,
     `slug` VARCHAR(255) NOT NULL,
     `title` VARCHAR(255) NOT NULL,
     `description` TEXT NULL,
