@@ -1,6 +1,6 @@
 import connection from "../db.js"
 
-function deleteProducts(slug) {
+async function deleteProducts(slug) {
 
     const deleteQuery = `
     DELETE FROM products WHERE slug = ?

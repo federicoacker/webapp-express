@@ -4,7 +4,6 @@ import createSlug from "../../utils_js/createSlug.js";
 async function addReview(request) {
     const {title, description, vote} = request.validatedReview
     const productId = request.productId;
-    console.log(productId);
     const slug = await createSlug(title);
     if(!slug){
         return {error:500, result:null}

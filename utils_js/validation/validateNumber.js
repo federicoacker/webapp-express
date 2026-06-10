@@ -5,7 +5,7 @@ export function validateNumber(value){
         return null;
     }
 
-    if(Number.isNaN(parsedValue)){
+    if(Number.isNaN(parsedValue) || !Number.isInteger(parsedValue)){  
         return null;
     }
 
