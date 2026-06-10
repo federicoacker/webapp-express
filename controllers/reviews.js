@@ -9,7 +9,7 @@ const reviewController = {
 }
 
 async function index (request, response) {
-    const slug = request.productSlug // Mi aspetto che ci sia un middleware che valida le slug e me le salva qui.
+    const slug = request.productSlug // Mi aspetto che ci sia un middleware che valida le slug e me le salva in questo campo.
     const results = await reviewSelectAllForProduct(productSlug);
     if(!results){
         return response.status(500).json({
