@@ -1,5 +1,6 @@
 import express from 'express';
 import reviewRouter from './routers/reviews.js';
+import productRouter from './routers/products.js';
 import { checkProductSlugExists } from './middlewares/checkProductSlugExists.js';
 import { notFound } from './middlewares/notFound.js';
 import { errorHandler } from './middlewares/errorHandler.js';
@@ -9,6 +10,8 @@ const port = process.env.SERVER_PORT || 3000;
 const app = express();
 
 app.use(express.static('public'));
+
+app.use("/products", productRouter);
 
 app.use("/products/:productSlug/reviews", [checkProductSlugExists, reviewRouter]);
 

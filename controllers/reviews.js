@@ -32,7 +32,7 @@ async function index(request, response) {
 }
 
 async function show(request, response) {
-    const { result: foundReview, error } = await getReviewBySlug(request);
+    const { result: foundReview, error } = await getReviewBySlug(request.params.reviewSlug);
     if (error === 404) {
         return response.status(404).json({
             error: "Review non trovata",
@@ -52,8 +52,8 @@ async function show(request, response) {
 }
 
 async function store(request, response) {
-    const reviewId = await addReview(request);
-    if (!reviewId) {
+    const {result: reviewId, error} = await addReview(request);
+    if (error) {
         return response.status(500).json({
             error: "C'è stato un errore nell'inserimento della review",
             result: null
@@ -66,14 +66,20 @@ async function store(request, response) {
 
 }
 
-function modify(request, response) {
-    const slug = request.params.reviewSlug;
-    const reviewToUpdate = request.validateReview;//mi aspetto un middleware che valida i dati
-
+async function modify(request, response) {
+    const slug = request.reviewSlug;
+    const reviewToUpdate = request.validatedReview;//mi aspetto un middleware che valida i dati
     try {
-        const result = await updateReview(slug, reviewToUpdate);
+        const {result, error} = await updateReview(slug, reviewToUpdate);
 
-        if (results.affectedRows === 0) {
+        if(error === 500){
+            return response.status(500).json({
+                error:"C'è stato un errore nell'update della review",
+                result: null
+            });
+        }
+        
+        if (result.affectedRows === 0) {
             return response.status(404)
                 .json({
                     error: "review non trovata",
@@ -83,7 +89,7 @@ function modify(request, response) {
 
         response.json({
             error: null,
-            result: results
+            result: result[0]
         });
 
     } catch (error) {

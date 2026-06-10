@@ -1,35 +1,32 @@
 import connection from "../data/db.js";
+import getReviewBySlug from "../data/queries/getReviewBySlug.js";
 import { validateSlug } from "../utils_js/validation/validateSlug.js";
 
 export async function checkReviewSlugExists(request, response, next) {
-    
+
     const validatedSlug = validateSlug(request.params.reviewSlug);
-    if(validatedSlug === null) {
+    if (validatedSlug === null) {
         return response.status(400).json({
             error: "Slug non valida",
             result: null
         });
     }
+    const { result: rows, error } = await getReviewBySlug(validatedSlug);
 
-    try {
-        const sql = `SELECT title, slug FROM reviews WHERE slug = ? LIMIT 1`;
-        const [rows] = await connection.query(sql, [validatedSlug]);
-        if(rows.length === 0) {
-            return response.status(404).json({
-                error: "Prodotto non trovato",
-                result: null
-            });
-        }
-
-        request.reviewSlug = validatedSlug;
-        request.foundReview = rows;
-
-        return next();
-    } catch(error) {
+    if (error === 404) {
+        return response.status(404).json({
+            error: "Prodotto non trovato",
+            result: null
+        });
+    }
+    if (error === 500) {
         return response.status(500).json({
             error: "C'è stato un problema nel recuperare i dati dal db",
             result: null
         });
     }
+    request.reviewSlug = validatedSlug;
+    request.foundReview = rows;
     
+    return next();
 }

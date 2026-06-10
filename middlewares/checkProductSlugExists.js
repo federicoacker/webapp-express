@@ -6,8 +6,8 @@ export async function checkProductSlugExists(request, response, next) {
 
     if(validatedSlug === null) {
         return response.status(400).json({
-            success: false,
-            message: "Slug non valida",
+            error: "Slug non valida",
+            result: null,
         });
     }
 
@@ -22,9 +22,9 @@ export async function checkProductSlugExists(request, response, next) {
         }
 
         request.productSlug = validatedSlug;
-        request.product = rows;
-        request.productId = rows.id;
-
+        request.product = rows[0];
+        request.productId = rows[0].id;
+        console.log(rows[0].id);
         return next();
     } catch(error) {
         return response.status(500).json({
