@@ -8,7 +8,7 @@ const app = express();
 
 app.use(express.static('public'));
 
-app.use("/products/:slug/reviews", reviewRouter);
+app.use("/products/:productSlug/reviews", reviewRouter);
 
 app.get("/", (request, response) => {
     response.json({
