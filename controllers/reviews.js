@@ -67,13 +67,19 @@ async function store(request, response) {
 }
 
 async function modify(request, response) {
-    const slug = request.params.reviewSlug;
-    const reviewToUpdate = request.validateReview;//mi aspetto un middleware che valida i dati
-
+    const slug = request.reviewSlug;
+    const reviewToUpdate = request.validatedReview;//mi aspetto un middleware che valida i dati
     try {
-        const result = await updateReview(slug, reviewToUpdate);
+        const {result, error} = await updateReview(slug, reviewToUpdate);
 
-        if (results.affectedRows === 0) {
+        if(error === 500){
+            return response.status(500).json({
+                error:"C'è stato un errore nell'update della review",
+                result: null
+            });
+        }
+        
+        if (result.affectedRows === 0) {
             return response.status(404)
                 .json({
                     error: "review non trovata",
@@ -83,7 +89,7 @@ async function modify(request, response) {
 
         response.json({
             error: null,
-            result: results[0]
+            result: result[0]
         });
 
     } catch (error) {
