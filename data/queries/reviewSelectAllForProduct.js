@@ -10,7 +10,7 @@ async function reviewSelectAllForProduct(slug){
     `;
 
     try{
-        const results = connection.execute(querySelect, [slug]);
+        const results = await connection.execute(querySelect, [slug]);
     }
     catch (error){
         return null;
