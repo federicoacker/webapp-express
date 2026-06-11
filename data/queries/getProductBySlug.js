@@ -8,8 +8,9 @@ async function getProductBySlug(slug) {
     `;
 
     try {
-        const results = await connection.execute(querySelect, [slug])
-        return results;
+        const [result] = await connection.execute(querySelect, [slug]);
+        result[0].price=(parseFloat(result[0].price));
+        return result;
     } catch (error) {
         return null;
     }

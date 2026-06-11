@@ -5,10 +5,12 @@ import { checkProductSlugExists } from './middlewares/checkProductSlugExists.js'
 import { notFound } from './middlewares/notFound.js';
 import { errorHandler } from './middlewares/errorHandler.js';
 import categoriesController from './controllers/categoriesController.js';
+import cors from "cors";
 const port = process.env.SERVER_PORT || 3000;
 
 const app = express();
 
+app.use(cors());
 app.use(express.static('public'));
 
 
