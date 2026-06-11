@@ -6,7 +6,7 @@ async function productSelectAll() {
     FROM products
     `;
     const querySelectCategories = `
-    SELECT label, category_product.product_id, category_product.category_id
+    SELECT categories.label, categories.slug, category_product.product_id, category_product.category_id
     FROM categories
     JOIN category_product
     ON categories.id = category_product.category_id
@@ -16,6 +16,13 @@ async function productSelectAll() {
         const [products] = await connection.execute(querySelectProducts);
         const [categories] = await connection.execute(querySelectCategories);
 
+        if(products.length === 0){
+            return {result:null, error:404};
+        }
+        if(categories.length === 0){
+            return {result:null, error:500};
+        }
+
         for (const product of products){
             product.categories = [];
         }
@@ -23,20 +30,24 @@ async function productSelectAll() {
         for(const category of categories){
             const connectedProduct = products.find(product => product.id === category.product_id);
             if(connectedProduct){
-                connectedProduct.categories.push(category);
+                connectedProduct.categories.push({label:category.label, slug:category.slug});
             }
         }
         const mappedProducts = products.map(product=> {
             return {
-                ...product,
-                price: parseFloat(product.price)
-            }
+                name: product.name,
+                description: product.description,
+                image: product.image,
+                slug: product.slug,
+                price: parseFloat(product.price),
+                categories: product.categories
+            };
         })
 
-        return mappedProducts;
+        return {result:mappedProducts, error:null};
 
     } catch (error) {
-        return null;
+        return{result:null, error:500};
     }
 }
 export default productSelectAll
