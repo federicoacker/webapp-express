@@ -15,7 +15,7 @@ export async function checkReviewSlugExists(request, response, next) {
 
     if (error === 404) {
         return response.status(404).json({
-            error: "Prodotto non trovato",
+            error: "Review non trovata",
             result: null
         });
     }

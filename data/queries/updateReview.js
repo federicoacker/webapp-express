@@ -19,7 +19,7 @@ async function updateReview(slug, reviewToUpdate) {
         try{
             const titleResult = await connection.execute(updateQuery, [title, slug]);
             result.push(titleResult);
-            if(titleResult.changedRows > 0){
+            if(titleResult[0].changedRows > 0){
                 const newSlug = await createSlug(title);
                 result.push(await connection.execute(updateSlugQuery, [newSlug, slug]));
             }

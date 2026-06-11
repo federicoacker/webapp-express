@@ -2,7 +2,7 @@ import connection from "../db.js";
 
 async function reviewSelectAllForProduct(slug){
     const querySelect = `
-    SELECT r.slug, r.title, r.description, r.vote, r.likes, r.date
+    SELECT r.slug, r.title, r.description, r.vote, r.likes, r.created_at
     FROM reviews as r
     JOIN products as p
     ON p.id = r.product_id

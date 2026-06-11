@@ -8,14 +8,14 @@ async function getReviewBySlug(slug) {
         const [reviewRows] = await connection.execute(querySelect,[slug]);
 
         if (reviewRows.length === 0) {
-            return { result: null, error: 404 }
+            return { result: null, error: 404 };
         }
 
         return {result: reviewRows, error:null};
 
     } catch (error) {
         console.error(error);
-        return { result: null, error: 500 }
+        return { result: null, error: 500 };
     }
 }
 
