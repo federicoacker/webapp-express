@@ -26,7 +26,14 @@ async function productSelectAll() {
                 connectedProduct.categories.push(category);
             }
         }
-        return products;
+        const mappedProducts = products.map(product=> {
+            return {
+                ...product,
+                price: parseFloat(product.price)
+            }
+        })
+
+        return mappedProducts;
 
     } catch (error) {
         return null;
