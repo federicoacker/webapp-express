@@ -4,16 +4,20 @@ import productRouter from './routers/products.js';
 import { checkProductSlugExists } from './middlewares/checkProductSlugExists.js';
 import { notFound } from './middlewares/notFound.js';
 import { errorHandler } from './middlewares/errorHandler.js';
-const url = process.env.SERVER_URL;
+import categoriesController from './controllers/categoriesController.js';
 const port = process.env.SERVER_PORT || 3000;
 
 const app = express();
 
 app.use(express.static('public'));
 
+
 app.use("/products", productRouter);
 
 app.use("/products/:productSlug/reviews", [checkProductSlugExists, reviewRouter]);
+
+app.get("/categories/", categoriesController.index);
+app.get("/categories/:categorySlug", categoriesController.show);
 
 app.use(notFound);
 app.use(errorHandler);

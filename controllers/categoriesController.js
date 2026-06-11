@@ -22,7 +22,7 @@ export async function index(request, response, next) {
 
 export async function show(request, response, next) {
     try{
-        const {slug} = request.params;
+        const slug = request.params.categorySlug;
 
         const sql = `
             SELECT id, slug, label, description, image
@@ -48,3 +48,9 @@ export async function show(request, response, next) {
         return next(error);
     }
 }
+
+const categoriesController = {
+    index,
+    show
+}
+export default categoriesController;
