@@ -60,7 +60,7 @@ const products = [
     {
         name: "Triassic Chicken Nuggets",
         description: "Un gusto paleontologico interessante e dolce, con un cuore morbido che richiama fragranze antiche e una croccantezza perfetta. Questi nuggets hanno un sapore che sembra raccontare storie di fossili e terre lontane, con un richiamo di erbe selvatiche e una texture generosa che invita a un consumo rilassato. La loro sequenza di aromi seduce chi cerca un profilo diverso dal solito, personale e memorabile.",
-        image: "triassic-chicken-nuggets.wemp",
+        image: "triassic-chicken-nuggets.webp",
         categories: ["bites"],
         price: 7.45,
         geological_era: "Early Cretaceous",
@@ -105,7 +105,7 @@ const products = [
     {
         name: "Savanna Smoke Wrap",
         description: "Un gusto paleontologico affumicato e terroso, con una sensazione calda che richiama una savana antica e un fondo erbaceo che ne allunga la persistenza. Il profilo è bello e intrigante, perfetto per chi ama i sapori profondi e desidera una costruzione gustativa intensa ma equilibrata. Il wrap unisce materia e aroma in un’esperienza che sa di legno, terra e avventure preistoriche.",
-        image: "svanna-smoke-wrap.webp",
+        image: "savanna-smoke-wrap.webp",
         categories: ["wraps"],
         price: 8.95,
         geological_era: "Middle Jurassic",
@@ -303,7 +303,7 @@ const products = [
     {
         name: "Jurassic Brownie Bite",
         description: "Un morso dal sapore paleontologico intenso e cioccolatoso, con una consistenza densa che ricorda lava solidificata. È bello e deciso, perfetto per gli amanti del cioccolato profondo, con un cuore umido che rilascia aromi tostati e una dolcezza intensa. Questo piccolo dessert ha carattere e personalità, capace di chiudere il pasto con un impatto caldo e seducente.",
-        image: "",
+        image: "jurassic-brownie-bite.webp",
         categories: ["desserts"],
         price: 6.55,
         geological_era: "Sweet Cretaceous",
@@ -312,7 +312,7 @@ const products = [
     {
         name: "Veloci Cream Cup",
         description: "Una coppetta dal gusto paleontologico cremoso e delicato, con un equilibrio gentile tra dolcezza e freschezza. Il profilo è bello e morbido, ottimo per chi cerca un finale leggero, con una texture vellutata che si scioglie e lascia una traccia di note floreali e vanigliate. Questo dessert è un piccolo interludio raffinato, capace di portare una sensazione di leggerezza antica e sofisticata.",
-        image: "",
+        image: "veloci-cream-cup.webp",
         categories: ["desserts"],
         price: 7.10,
         geological_era: "Sweet Cretaceous",
@@ -321,7 +321,7 @@ const products = [
     {
         name: "Predator Combo Menu",
         description: "Un menu dal profilo paleontologico vario e completo, con sapori che insieme evocano una caccia antica. Ogni elemento è bello e interessante, studiato per offrire un’esperienza gustativa avventurosa, con contrasti di intensità e texture che si susseguono come tappe di un viaggio nella natura primordiale. È pensato per chi desidera un pasto dinamico e potente, capace di raccontare territori perduti.",
-        image: "",
+        image: "predator-combo-menu.webp",
         categories: ["menus"],
         price: 12.90,
         geological_era: "Service Era",
@@ -330,7 +330,7 @@ const products = [
     {
         name: "Volcano Family Menu",
         description: "Un menu dal gusto paleontologico caldo e accogliente, ricco di aromi che ricordano strati di lava e spezie antiche. È bello e conviviale, perfetto per condividere un pasto intenso, con sapori avvolgenti e un ritmo gustativo pensato per soddisfare tutti. Questo menu è costruito come un vulcano di sapori, con una progressione intensa che regala conforto e un senso di rituale primordiale.",
-        image: "",
+        image: "volcano-family-menu.webp",
         categories: ["menus"],
         price: 13.45,
         geological_era: "Service Era",
@@ -339,7 +339,7 @@ const products = [
     {
         name: "Explorer Lunch Menu",
         description: "Un menu dal carattere paleontologico fresco e avventuroso, costruito per esplorare sapori diversi con equilibrio. È bello e sorprendente, ideale per una pausa con spirito da esploratore, con piatti che si rincorrono tra note saline, erbacee e aromatiche. Il risultato è una progressione elegante e dinamica, pensata per chi vuole scoprire un percorso gustativo intrigante senza rinunciare all’armonia.",
-        image: "",
+        image: "explorer-lunch-menu.webp",
         categories: ["menus"],
         price: 14.00,
         geological_era: "Service Era",
@@ -348,7 +348,7 @@ const products = [
     {
         name: "Campfire Dinner Menu",
         description: "Un menu dal profilo paleontologico rustico e fumé, con aromi che rimandano a un falò nella notte giurassica. È bello e interessante, pensato per chi ama la convivialità antica, con dettagli aromatici che evocano legni bruciati e carne affumicata. Ogni piatto è costruito per creare un’esperienza calda e avvolgente, come una cena condivisa sotto il cielo di un’era perduta.",
-        image: "",
+        image: "campfire-dinner-menu.webp",
         categories: ["menus"],
         price: 14.55,
         geological_era: "Service Era",
@@ -357,7 +357,7 @@ const products = [
     {
         name: "Jurassic Value Menu",
         description: "Un menu dal sapore paleontologico solido e piacevole, con elementi ben bilanciati e un carattere autentico. È bello nella sua semplicità, con un gusto che rimane accessibile ma ricco, offrendo una sequenza gustativa coerente e soddisfacente. Questo menu è pensato per chi vuole un pasto completo e rassicurante, con un tocco di antica avventura nascosto dietro ogni portata.",
-        image: "",
+        image: "jurassic-value-menu.webp",
         categories: ["menus"],
         price: 15.10,
         geological_era: "Service Era",
