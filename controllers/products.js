@@ -10,12 +10,19 @@ const productController = {
 }
 
 async function index(request, response) {
-    const result = await productSelectAll();
+    const {result, error} = await productSelectAll();
 
-    if (!result) {
+    if(error === 404){
+        return response.status(404).json({
+            error:"Non sono stati trovati prodotti",
+            result:null
+        });
+    }
+
+    if(error === 500){
         return response.status(500).json({
-            error: "errore nel recupero dei prodotti",
-            result: null
+            error:"C'è stato un problema nel fetch dei prodotti",
+            result:null
         });
     }
 
@@ -27,25 +34,25 @@ async function index(request, response) {
 
 async function show(request, response) {
     const slug = request.productSlug;
-    const result = await getProductBySlug(slug);
+    const {result, error} = await getProductBySlug(slug);
 
-    if (!result) {
-        return response.status(500).json({
-            error: 'errore nel recupero del prodotto',
-            result: null
-        })
+    if(error === 404){
+        return response.status(404).json({
+            error:"Prodotto non trovato",
+            result:null
+        });
     }
 
-    if (result.length === 0) {
-        return response.status(404).json({
-            error: 'prodotto non trovato',
-            result: null
-        })
+    if(error === 500){
+        return response.status(500).json({
+            error:"C'è stato un error nel fetch del prodotto",
+            result:null
+        });
     }
 
     response.json({
         error: null,
-        result: result[0]
+        result: result
     });
 
 }

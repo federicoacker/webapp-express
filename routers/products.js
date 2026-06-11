@@ -5,8 +5,6 @@ import { checkProductSlugExists } from "../middlewares/checkProductSlugExists.js
 
 const productRouter = express.Router();
 
-productRouter.use(express.json());
-
 productRouter.get("/", productController.index);
 
 productRouter.get("/:productSlug", [checkProductSlugExists, productController.show]);
