@@ -59,18 +59,18 @@ async function show(request, response) {
 
 async function destroy(request, response) {
     const slug = request.params.productSlug;
-    const results = await deleteProducts(slug);
+    const {result, error} = await deleteProducts(slug);
 
-    if (!results) {
+    if (error === 500) {
         return response.status(500).json({
             error: "errore nell'eliminazione del prodotto",
             result: null
         })
     }
 
-    if (results.affectedRows === 0) {
+    if (error === 404) {
         return response.status(404).json({
-            error: "prodotto non trovato",
+            error: "Prodotto non trovato",
             result: null
         })
     }
