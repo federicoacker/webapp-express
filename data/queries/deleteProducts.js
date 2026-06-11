@@ -1,8 +1,10 @@
 import connection from "../db.js"
 
-async function deleteProducts(slug) {
-    
+async function deleteProducts(request) {
+
     const foundProduct = request.product;
+    const productSlug = request.productSlug;
+
     if(!foundProduct){
         return {result:null, error:404};
     }
@@ -13,7 +15,7 @@ async function deleteProducts(slug) {
 
 
     try {
-        const result = await connection.execute(deleteQuery, [slug]);
+        const result = await connection.execute(deleteQuery, [productSlug]);
         return {result: result[0], error:null};
     }
     catch (error) {

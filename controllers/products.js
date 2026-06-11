@@ -58,8 +58,8 @@ async function show(request, response) {
 }
 
 async function destroy(request, response) {
-    const slug = request.params.productSlug;
-    const {result, error} = await deleteProducts(slug);
+
+    const {result, error} = await deleteProducts(request);
 
     if (error === 500) {
         return response.status(500).json({
@@ -77,7 +77,7 @@ async function destroy(request, response) {
 
     response.json({
         error: null,
-        result: results
+        result: result
     });
 }
 
