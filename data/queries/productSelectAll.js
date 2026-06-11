@@ -37,7 +37,7 @@ async function productSelectAll() {
             return {
                 name: product.name,
                 description: product.description,
-                image: product.image,
+                image: process.env.PRODUCT_STATIC_PATH + product.image,
                 slug: product.slug,
                 price: parseFloat(product.price),
                 categories: product.categories

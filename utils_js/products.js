@@ -6,7 +6,7 @@ const products = [
     {
         name: "T-Rex Prime Burger",
         description: "Una carne di dinosauro dal sapore profondo e opulento, con note rotonde di selvatico e un finale ferino che ricorda il cuore del Late Jurassic. Ogni morso è un’esplorazione della fibra succosa, con una trama carnosa che parla di bestie preistoriche e territori primordiali. Questo burger mantiene l’equilibrio tra consumabilità e carattere primordiale, restando intenso e memorabile fino all’ultimo morso, come un viaggio nella carne antica.",
-        image: "",
+        image: "t-rex-prime-burger.webp",
         categories: ["burgers"],
         price: 11.90,
         geological_era: "Late Jurassic",
@@ -15,7 +15,7 @@ const products = [
     {
         name: "Raptor Double Smash",
         description: "Carne di dinosauro schiacciata doppia, con un gusto intenso e fulminante che sprigiona note affumicate, selvatiche e leggermente speziate. Il sapore è agile ma imponente, evocando la forza di un raptor in caccia e la texture succosa di una carne vera e primordiale. La consistenza a strati amplifica i toni minerali e terrosi, per un’esperienza carnivora che resta al palato e racconta un’avventura giurassica.",
-        image: "",
+        image: "raptor-double-smash.webp",
         categories: ["burgers"],
         price: 12.45,
         geological_era: "Late Jurassic",
@@ -24,7 +24,7 @@ const products = [
     {
         name: "Stego Crunch Burger",
         description: "La carne di dinosauro qui è croccante al bordo e densa al centro, con un profilo gustativo terroso, affumicato e pieno. Il sapore richiama la natura dura del Cretaceo, equilibrato tra una succosità carnosa e una profondità minerale molto avvincente. Ogni morso fonde consistenza robusta e calore primordiale, offrendo il piacere strutturato di una carne antica resa moderna dal contrasto croccante‑morbido.",
-        image: "",
+        image: "stego-crunch-burger.webp",
         categories: ["burgers"],
         price: 13.00,
         geological_era: "Late Jurassic",
@@ -33,7 +33,7 @@ const products = [
     {
         name: "Bronto Tower Burger",
         description: "Una carne di dinosauro dal sapore ampio e mastodontico, con una succosità che avvolge il palato e un retrogusto che ricorda praterie antiche. Questo burger è un concentrato di forza giurassica, dal carattere pieno e deciso, dove la fibra è sanguigna e intensa e l’esperienza gustativa resta lunga e avvolgente. È pensato per chi cerca un sapore primordiale senza compromessi, con un impatto che resta nel tempo.",
-        image: "",
+        image: "bronto-tower-burger.webp",
         categories: ["burgers"],
         price: 13.55,
         geological_era: "Late Jurassic",
@@ -42,7 +42,7 @@ const products = [
     {
         name: "Cretaceous Classic Burger",
         description: "Carne di dinosauro dal profilo gustativo elegante e robusto, con note erbacee, minerali e una persistenza piena che richiama il Cretaceo. Il morso è sapido, caldo e ricco, pensato per chi cerca una vera esperienza carnivora preistorica. L’equilibrio tra succo naturale e dolcezza animale rende questo burger austero e raffinato, come un classico giurassico reinterpretato in chiave contemporanea e studiato per restare memorabile.",
-        image: "",
+        image: "cretaceous-classic-burger.webp",
         categories: ["burgers"],
         price: 14.10,
         geological_era: "Late Jurassic",
@@ -51,7 +51,7 @@ const products = [
     {
         name: "Raptor Crispy Bites",
         description: "Un sapore paleontologico bellissimo, croccante e sapido con un tocco speziato che evoca un paesaggio mesozoico. Ogni morso è un’esplosione di carattere antico e piacevole, con una consistenza perfettamente bilanciata che mantiene l’energia del tempo primordiale. Questo snack è studiato per chi ama un profilo vivo, interessante e con un richiamo autentico alla storia dei climi antichi.",
-        image: "",
+        image: "raptor-crispy-bites.webp",
         categories: ["bites"],
         price: 6.90,
         geological_era: "Early Cretaceous",
@@ -60,7 +60,7 @@ const products = [
     {
         name: "Triassic Chicken Nuggets",
         description: "Un gusto paleontologico interessante e dolce, con un cuore morbido che richiama fragranze antiche e una croccantezza perfetta. Questi nuggets hanno un sapore che sembra raccontare storie di fossili e terre lontane, con un richiamo di erbe selvatiche e una texture generosa che invita a un consumo rilassato. La loro sequenza di aromi seduce chi cerca un profilo diverso dal solito, personale e memorabile.",
-        image: "",
+        image: "triassic-chicken-nuggets.wemp",
         categories: ["bites"],
         price: 7.45,
         geological_era: "Early Cretaceous",
@@ -69,7 +69,7 @@ const products = [
     {
         name: "Compsognathus Mini Bites",
         description: "Piccoli bocconcini dal sapore paleontologico delicato, con un profilo aromatico gentile e una texture armoniosa. Il gusto è fresco e affascinante, come un frammento di giungla antica che racconta un percorso di foglie umide e spezie leggere. Ogni mini morso è studiato per essere appagante e interessante, con una presenza dolce e salata che resta ben definita.",
-        image: "",
+        image: "compsognathus-mini-bites.webp",
         categories: ["bites"],
         price: 8.00,
         geological_era: "Early Cretaceous",
@@ -78,7 +78,7 @@ const products = [
     {
         name: "Meteor Pop Bites",
         description: "Un gusto paleontologico esplosivo, croccante e sapido, con una sequenza di aromi che rimanda a meteoriti di sapore. Ogni pezzo è interessante e sorprendente, con una profondità che si sviluppa tra note tostate e un’eco speziata capace di evocare il vento preistorico. Questo snack è pensato per chi vuole un’esperienza avvolgente, lunga e diversa dal solito.",
-        image: "",
+        image: "meteor-pop-bites.webp",
         categories: ["bites"],
         price: 8.55,
         geological_era: "Early Cretaceous",
@@ -87,7 +87,7 @@ const products = [
     {
         name: "Jurassic Pepper Bites",
         description: "Note pepate e selvagge si uniscono a un carattere paleontologico deciso, con un finale intenso e profondo. Queste bites raccontano una storia di territori antichi e sapori forti, con una punta piccante ben calibrata che si appoggia su una base minerale e rustica. La combinazione di aromi ricorda i cieli aperti e le steppe di un’era remota, restando persistente e intrigante.",
-        image: "",
+        image: "jurassic-pepper-bites.webp",
         categories: ["bites"],
         price: 9.10,
         geological_era: "Early Cretaceous",
@@ -96,7 +96,7 @@ const products = [
     {
         name: "Ptero Fresh Wrap",
         description: "Un sapore paleontologico fresco e verde, con note vegetali che richiamano brezze giurassiche e una chiusura cremosa che avvolge senza appesantire. Il risultato è bello e avvolgente, con un equilibrio gentile e interessante che rimane al palato. Questo wrap punta sulla naturalezza antica delle verdure e sulla delicatezza del condimento, per un’esperienza leggera ma profonda.",
-        image: "",
+        image: "ptero-fresh-wrap.webp",
         categories: ["wraps"],
         price: 8.40,
         geological_era: "Middle Jurassic",
@@ -105,7 +105,7 @@ const products = [
     {
         name: "Savanna Smoke Wrap",
         description: "Un gusto paleontologico affumicato e terroso, con una sensazione calda che richiama una savana antica e un fondo erbaceo che ne allunga la persistenza. Il profilo è bello e intrigante, perfetto per chi ama i sapori profondi e desidera una costruzione gustativa intensa ma equilibrata. Il wrap unisce materia e aroma in un’esperienza che sa di legno, terra e avventure preistoriche.",
-        image: "",
+        image: "svanna-smoke-wrap.webp",
         categories: ["wraps"],
         price: 8.95,
         geological_era: "Middle Jurassic",
@@ -114,7 +114,7 @@ const products = [
     {
         name: "Fossil Ranch Wrap",
         description: "Un sapore paleontologico ricco e cremoso, con una profondità che ricorda un ranch preistorico e un equilibrio morbido tra affumicato, verde e dolcezza naturale. Questa combinazione crea un’esperienza lunga e appagante, dove gli aromi si evolvono lentamente e il gusto rimane avvolgente. È un wrap costruito per chi vuole un profilo pieno e ben sfaccettato.",
-        image: "",
+        image: "fossil-ranch-wrap.webp",
         categories: ["wraps"],
         price: 9.50,
         geological_era: "Middle Jurassic",
@@ -123,7 +123,7 @@ const products = [
     {
         name: "Volcanic Spicy Wrap",
         description: "Un profilo paleontologico vulcanico e speziato, con una scarica di calore che risveglia i sensi e una base aromatica profonda che rimane al palato. Il gusto è bello e potente, con un carattere unico e sorprendente, come un’eruzione di spezie antiche che avvolge il wrap. Questa proposta è pensata per chi cerca un’esperienza intensa, calda e memorabile.",
-        image: "",
+        image: "volcanic-spicy-wrap.webp",
         categories: ["wraps"],
         price: 10.05,
         geological_era: "Middle Jurassic",
@@ -132,7 +132,7 @@ const products = [
     {
         name: "Herbivore Balance Wrap",
         description: "Un sapore paleontologico equilibrato e fresco, con note erbacee e una morbidezza gentile che raccontano un paesaggio verde e primordiale. È bello e raffinato, pensato per chi cerca un profilo naturale e armonioso, con una costruzione gustativa che valorizza ingredienti in sintonia. Questo wrap punta sulla leggerezza antica ma mantiene una profondità sorprendente.",
-        image: "",
+        image: "herbivore-balance-wrap.webp",
         categories: ["wraps"],
         price: 10.60,
         geological_era: "Middle Jurassic",
@@ -141,7 +141,7 @@ const products = [
     {
         name: "Lava Fries",
         description: "Queste patatine hanno un sapore paleontologico sorprendente, con una croccantezza calda e un retrogusto leggermente fumé. Il profilo è bello e minerale, come lava antica che si solidifica in sapore, e la sensazione croccante apre una sequenza gustativa che rimane lunga e avvolgente. È un contorno pensato per chi cerca un tono rustico, con un richiamo antico ma moderno al tempo stesso.",
-        image: "",
+        image: "lava-fries.webp",
         categories: ["sides"],
         price: 4.50,
         geological_era: "Late Cretaceous",
@@ -150,7 +150,7 @@ const products = [
     {
         name: "Dino Onion Rings",
         description: "Il sapore paleontologico è dolce e rotondo, con una croccantezza avvolgente e una nota leggermente affumicata che richiama una foresta antica. Ogni anello racconta un’idea di fossile gustoso e ben bilanciato, con una componente soffice all’interno che contrasta perfettamente con l’esterno croccante. È un accompagnamento studiato per aggiungere profondità e comfort al piatto.",
-        image: "",
+        image: "dino-onion-rings.webp",
         categories: ["sides"],
         price: 5.05,
         geological_era: "Late Cretaceous",
@@ -159,7 +159,7 @@ const products = [
     {
         name: "Canyon Potato Wedges",
         description: "Queste wedges esprimono un sapore paleontologico rustico e minerale, con un cuore morbido e un’esterno croccante. Il gusto è interessante e bello, come un canyon scavato dal tempo, con un equilibrio tra sapidità e dolcezza del tubero che rimanda a strati rocciosi. Sono pensate per durare al palato e per dare una sensazione di terra antica e sostanziosa.",
-        image: "",
+        image: "canyon-potato-wedges.webp",
         categories: ["sides"],
         price: 5.60,
         geological_era: "Late Cretaceous",
@@ -168,7 +168,7 @@ const products = [
     {
         name: "Jurassic Coleslaw Cup",
         description: "Una freschezza paleontologica croccante e naturale, con verdure luminose e un condimento che richiama clima primordiale. Il risultato è bello, leggero e sorprendentemente armonico, con una nota acidula che bilancia perfettamente la croccantezza vegetale. È una componente studiata per offire un contrasto vivo e pulito, capace di aggiungere energia e carattere a ogni piatto.",
-        image: "",
+        image: "jurassic-coleslaw-cup.webp",
         categories: ["sides"],
         price: 6.15,
         geological_era: "Late Cretaceous",
@@ -177,7 +177,7 @@ const products = [
     {
         name: "Cretaceous Corn Bites",
         description: "Un sapore paleontologico dolce e terroso, con una texture morbida che richiama grani antichi. Questo contorno è interessante per la sua dolcezza naturale e il profilo goloso, capace di portare al piatto una sensazione di campo arcaico. Le note di mais si ampliano in un finale avvolgente, rendendolo piacevole e originale insieme a un tocco di calore e tradizione.",
-        image: "",
+        image: "cretaceous-corn-bites.webp",
         categories: ["sides"],
         price: 6.70,
         geological_era: "Late Cretaceous",
@@ -186,7 +186,7 @@ const products = [
     {
         name: "Amber BBQ Sauce",
         description: "Una salsa dal gusto paleontologico ambrato, con note caramellate e affumicate che sembrano intrappolare il tempo. Il sapore è bello e profondo, perfetto per arricchire ogni piatto, con una corposità bilanciata che non sovrasta ma amplifica la carne e i contorni. La complessità della salsa ricorda resine antiche e arie di bosco, regalando una sensazione calda e persistente.",
-        image: "",
+        image: "amber-bbq-sauce.webp",
         categories: ["sauces"],
         price: 1.50,
         geological_era: "Mesozoic Blend",
