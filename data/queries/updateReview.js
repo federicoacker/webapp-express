@@ -27,7 +27,7 @@ async function updateReview(slug, reviewToUpdate) {
             return {error:500, result:null};
         }
     }
-    console.log(description);
+
     if(description){
         const updateQuery = `
         UPDATE reviews

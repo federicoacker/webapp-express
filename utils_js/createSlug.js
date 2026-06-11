@@ -20,8 +20,7 @@ async function createSlug(title) {
         }
 
         foundDuplicateSlug = await getReviewBySlug(slugFinal)
-        console.log(foundDuplicateSlug);
-        console.log(slugFinal);
+
         increment++;
 
     } while (foundDuplicateSlug.error !== 404);

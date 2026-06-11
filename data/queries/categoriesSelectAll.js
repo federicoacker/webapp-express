@@ -7,7 +7,6 @@ async function categoriesSelectAll(){
     `;
     try{
         const results = await connection.execute(querySelect);
-        console.log(results);
         if(results[0].length === 0){
             return {result:null, error:404};
         }

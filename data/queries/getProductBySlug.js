@@ -20,8 +20,6 @@ async function getProductBySlug(slug) {
     try {
         const [product] = await connection.execute(querySelect, [slug]);
         const [categories] = await connection.execute(querySelectCategories, [slug]);
-        console.log(categories);
-        console.log(product);
         if(product.length === 0){
             return {result:null, error:404};
         }
