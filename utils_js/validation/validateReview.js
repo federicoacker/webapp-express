@@ -46,7 +46,6 @@ function validateReview(reviewPayload, isPatch = true){
     const isValidFields = isPatch ? fieldsReceived.isSubsetOf(validFields) : fieldsReceived.isSupersetOf(validFields);
     // Vediamo se ci sono fields diverse (per la create e per la patch)
     const extraFields = fieldsReceived.difference(validFields);
-    console.log(extraFields);
     // Vediamo se ci sono fields mancanti (per la create);
     const missingFields = isPatch ? [] : validFields.difference(fieldsReceived);
 
