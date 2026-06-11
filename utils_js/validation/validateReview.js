@@ -10,7 +10,7 @@ function switchValidator(key, reviewPayload){
     switch(key){
         case "title":
             result = validateString(reviewPayload[key]);
-            if(!result){
+            if(!result || reviewPayload[key].length > 254){
                 return "Il titolo non è valido";
             }
             break;
@@ -27,7 +27,10 @@ function switchValidator(key, reviewPayload){
             }
             break;
         case "description":
-            // nessuna validazione necessaria, puoi fare quello che ti pare
+            result = validateString(reviewPayload[key]);
+                if(!result || reviewPayload[key].length > 64500){
+                    return "La description inserita non è valida";
+                }
             break;
         default:
             break;

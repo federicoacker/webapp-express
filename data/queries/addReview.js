@@ -10,7 +10,7 @@ async function addReview(request) {
     }
     try{
         const addQuery = `
-        INSERT INTO reviews (product_id, slug, title, description, vote, date)
+        INSERT INTO reviews (product_id, slug, title, description, vote, created_at)
         VALUES (?, ?, ?, ?, ?, NOW());
         `;
         const results = await connection.execute(addQuery, [productId, slug, title, description, vote]);

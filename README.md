@@ -13,4 +13,6 @@ Il regno dei panini e degli hamburger d'altri tempi. Selezioniamo solo le miglio
     - PATCH /:reviewSlug = Modifica una review per quel prodotto, ricorda sempre "title":string, "vote":number intero, "likes": number Intero, "description": string
     - DELETE /:reviewSlug = distrugge una review per quel prodotto
 
-- /categories da implementare ancora
+- /categories
+    - GET / = mostra tutte le categorie in db
+    - GET /:categorySlug = mostra la categoria corrispondente alla slug ricevuta

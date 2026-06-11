@@ -2,7 +2,7 @@ import connection from "../db.js";
 
 async function getReviewBySlug(slug) {
     const querySelect = `
-    SELECT title, description, vote, likes, date, slug FROM reviews WHERE slug = ?
+    SELECT title, description, vote, likes, created_at, slug FROM reviews WHERE slug = ?
     `
     try {
         const [reviewRows] = await connection.execute(querySelect,[slug]);
