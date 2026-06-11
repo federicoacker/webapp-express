@@ -36,7 +36,7 @@ async function getProductBySlug(slug) {
             name:product[0].name,
             description:product[0].description,
             price:parseFloat(product[0].price),
-            image:product[0].image,
+            image:process.env.PRODUCT_STATIC_PATH + product[0].image,
             slug:product[0].slug,
             categories: product[0].categories
         }
