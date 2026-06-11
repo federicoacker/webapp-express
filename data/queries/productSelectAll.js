@@ -2,8 +2,9 @@ import connection from "../db.js"
 
 async function productSelectAll() {
     const querySelectProducts = `
-    SELECT name, description, price, image, slug, id
+    SELECT name, description, price, image, slug, id, updated_at
     FROM products
+    ORDER BY updated_at
     `;
     const querySelectCategories = `
     SELECT categories.label, categories.slug, category_product.product_id, category_product.category_id
@@ -40,7 +41,8 @@ async function productSelectAll() {
                 image: process.env.PRODUCT_STATIC_PATH + product.image,
                 slug: product.slug,
                 price: parseFloat(product.price),
-                categories: product.categories
+                categories: product.categories,
+                updated_at: product.updated_at
             };
         })
 
