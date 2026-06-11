@@ -75,10 +75,7 @@ async function destroy(request, response) {
         })
     }
 
-    response.json({
-        error: null,
-        result: result
-    });
+    response.sendStatus(204);
 }
 
 export default productController;

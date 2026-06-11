@@ -27,16 +27,16 @@ export async function index(request, response, next) {
 
 export async function show(request, response, next) {
     const slug = request.categorySlug;
-    const result = await getCategoryBySlug(slug);
+    const {result, error} = await getCategoryBySlug(slug);
 
-    if (!result) {
+    if (error === 500) {
         return response.status(500).json({
             error: 'errore nel recupero della categoria',
             result: null
         })
     }
 
-    if (result.length === 0) {
+    if (error === 404) {
         return response.status(404).json({
             error: 'prodotto non trovato',
             result: null
@@ -45,7 +45,7 @@ export async function show(request, response, next) {
 
     response.json({
         error: null,
-        result: result[0]
+        result
     });
 }
 

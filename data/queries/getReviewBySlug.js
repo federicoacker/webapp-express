@@ -11,7 +11,7 @@ async function getReviewBySlug(slug) {
             return { result: null, error: 404 };
         }
 
-        return {result: reviewRows, error:null};
+        return {result: reviewRows[0], error:null};
 
     } catch (error) {
         console.error(error);
