@@ -195,7 +195,7 @@ const products = [
     {
         name: "Raptor Hot Sauce",
         description: "Una salsa piccante con un profilo paleontologico feroce, capace di sprigionare un calore deciso e un’irresistibile profondità. Il sapore è interessante e bello per chi vuole una scossa audace, con note speziate che si sviluppano lentamente e una componente affumicata che ricorda incendi antichi. È una salsa concepita per chi cerca intensità e carattere in ogni assaggio.",
-        image: "",
+        image: "raptor-hot-sauce.webp",
         categories: ["sauces"],
         price: 2.05,
         geological_era: "Mesozoic Blend",
@@ -204,7 +204,7 @@ const products = [
     {
         name: "Fossil Mayo Sauce",
         description: "Una crema dal sapore paleontologico morbido e vellutato, con un retrogusto delicato che ricorda fossili avvolti in crema. È bella e avvolgente, ideale per bilanciare sapori intensi, con una consistenza setosa che ne fa un accompagnamento versatile. La salsa regala una sensazione di terra umida e roccia soffice, perfetta per smorzare note forti e conferire un tocco familiare.",
-        image: "",
+        image: "fossil-mayo-sauce.webp",
         categories: ["sauces"],
         price: 2.60,
         geological_era: "Mesozoic Blend",
@@ -213,7 +213,7 @@ const products = [
     {
         name: "Smoky Tar Sauce",
         description: "Una salsa dal gusto paleontologico affumicato e robusto, con una nota tar-like che aggiunge profondità e un richiamo arcaico. Il profilo è bello e deciso, un tocco antico per i tuoi piatti, con una persistenza lunga e un contrasto tra dolce e affumicato che rimane al palato. È studiata per chi cerca un sapore audace e ricco, con una trama gustativa complessa.",
-        image: "",
+        image: "smoky-tar-sauce.webp",
         categories: ["sauces"],
         price: 3.15,
         geological_era: "Mesozoic Blend",
@@ -222,7 +222,7 @@ const products = [
     {
         name: "Meteor Honey Mustard",
         description: "Un sapore paleontologico dolce-piccante, con un miele antico che incrocia la spinta vivace della mostarda e un finale leggermente speziato. Il risultato è bello e interessante, con un contrasto che rimane nel palato e una texture setosa che lega gli ingredienti. Questa salsa è perfetta per chi desidera una nota dolce e avventurosa, con un retrogusto lungo e armonico.",
-        image: "",
+        image: "meteor-honey-mustard.webp",
         categories: ["sauces"],
         price: 3.70,
         geological_era: "Mesozoic Blend",
@@ -231,7 +231,7 @@ const products = [
     {
         name: "Glacier Cola",
         description: "Una bevanda dal profilo paleontologico fresco e frizzante, con una dolcezza nitida e una nota minerale come ghiacciai eterni. Il sapore è bello e sorprendente, ideale per rinfrescare l’esperienza e per creare un contrasto leggero con i piatti più intensi. È pensata per evocare aria pura e paesaggi antichi, con un finale pulito che lascia la bocca dissetata e pronta per il morso successivo.",
-        image: "",
+        image: "glacier-cola.webp",
         categories: ["drinks"],
         price: 3.20,
         geological_era: "Quaternary Service",
@@ -240,7 +240,7 @@ const products = [
     {
         name: "Jurassic Lemon Soda",
         description: "Una soda dal gusto paleontologico agrumato e brillante, con una carica di limone che ricorda aria primordiale. È bella e leggera, perfetta per accompagnare sapori intensi, e si comporta come un contrappunto acidulo che pulisce il palato. Questa bevanda sa di spazio aperto e vegetazione antica, con una scintilla frizzante che mette in evidenza il carattere del pasto.",
-        image: "",
+        image: "jurassic-lemon-soda.webp",
         categories: ["drinks"],
         price: 3.75,
         geological_era: "Quaternary Service",
@@ -249,7 +249,7 @@ const products = [
     {
         name: "Triassic Mango Shake",
         description: "Un sapore paleontologico tropicale e vellutato, con mango maturo che richiama frutti antichi e climi lussureggianti. Il risultato è bello e ricco, perfetto per una pausa dolce, con una cremosità intensa che avvolge il palato. Questa bevanda è pensata per trasportare chi la prova in una giungla primordiale, dove il dolce si fonde con un’energia calda e sensuale.",
-        image: "",
+        image: "triassic-mango-shake.webp",
         categories: ["drinks"],
         price: 4.30,
         geological_era: "Quaternary Service",
@@ -258,7 +258,7 @@ const products = [
     {
         name: "Bronto Vanilla Milk",
         description: "Una bevanda dal gusto paleontologico cremoso e avvolgente, con vaniglia calda che sa di erbe dolci antiche. È bella e rassicurante, ideale per chi ama le note morbide, con una corpulenza che nutre e calma il palato. Questo drink parla di comfort giurassico e di tradizione antica, con un equilibrio sottile tra dolcezza e morbidezza che resta piacevole.",
-        image: "",
+        image: "bronto-vanilla-milk.webp",
         categories: ["drinks"],
         price: 4.85,
         geological_era: "Quaternary Service",
@@ -267,7 +267,7 @@ const products = [
     {
         name: "Cretaceous Iced Tea",
         description: "Un tè freddo dal profilo paleontologico erbaceo e fresco, con una leggera acidità che richiama campi di erbe selvatiche. Il sapore è bello e pulito, perfetto per una pausa dissetante e per accompagnare piatti saporiti. È pensato per evocare una brezza primordiale tra piante antiche, con una freschezza lunga e una delicatezza che non copre ma sostiene l’intero pasto.",
-        image: "",
+        image: "cretaceous-iced-tea.webp",
         categories: ["drinks"],
         price: 5.40,
         geological_era: "Quaternary Service",
@@ -276,7 +276,7 @@ const products = [
     {
         name: "Fossil Cookie Pie",
         description: "Un dolce dal sapore paleontologico burroso e caramellato, con una morbidezza che ricorda le pietre antiche. È bello e avvolgente, ideale per chi cerca un finale goloso, con una componente croccante che si intreccia a un cuore dolce e avvolgente. Ogni morso è un invito a esplorare strati di dolcezza fragrante e a ritrovare un’atmosfera ricca di antichi racconti gastronomici.",
-        image: "",
+        image: "fossil-cookie-pie.webp",
         categories: ["desserts"],
         price: 4.90,
         geological_era: "Sweet Cretaceous",
@@ -285,7 +285,7 @@ const products = [
     {
         name: "Meteor Choco Sundae",
         description: "Un dessert dal gusto paleontologico cioccolatoso e profondo, con una dolcezza intensa che richiama meteoriti di cacao. Il profilo è bello e ricco, perfetto per una pausa golosa, con una consistenza cremosa che si intreccia a scaglie di cioccolato e a un finale leggermente tostato. È un’esperienza da esplorare lentamente, capace di evocare l’energia di un impatto cosmico trasformato in dolcezza.",
-        image: "",
+        image: "meteor-choco-sundae.webp",
         categories: ["desserts"],
         price: 5.45,
         geological_era: "Sweet Cretaceous",
@@ -294,7 +294,7 @@ const products = [
     {
         name: "Amber Caramel Muffin",
         description: "Un muffin dal sapore paleontologico dorato e caramellato, con sentori di ambra dolce e una texture soffice. È bello e appagante, ideale per un momento di piacere, con un retrogusto di zucchero bruciato e una dolcezza bilanciata che richiama foreste di resina antica. Questo dessert è pensato per chi desidera un finale avvolgente, caldo e confortevole.",
-        image: "",
+        image: "amber-caramel-muffin.webp",
         categories: ["desserts"],
         price: 6.00,
         geological_era: "Sweet Cretaceous",
