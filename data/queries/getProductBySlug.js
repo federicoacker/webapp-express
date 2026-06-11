@@ -2,7 +2,7 @@ import connection from "../db.js"
 
 async function getProductBySlug(slug) {
     const querySelect = `
-    SELECT name, description, price, image
+    SELECT name, description, price, image, slug
     FROM products
     WHERE slug = ?;
     `;
