@@ -7,13 +7,22 @@ import { notFound } from './middlewares/notFound.js';
 import { errorHandler } from './middlewares/errorHandler.js';
 import categoriesController from './controllers/categories.js';
 import cors from "cors";
+import chiamaClaudioCheTiRisponde from './utils_js/agent.js';
 const port = process.env.SERVER_PORT || 3000;
 
 const app = express();
 
 app.use(cors());
 app.use(express.static('public'));
+app.use(express.json());
 
+app.post("/agent", async (request,response) => {
+    const message = await chiamaClaudioCheTiRisponde(request.body);
+
+    return response.json({
+        result: message
+    });
+})
 
 app.use("/products", productRouter);
 

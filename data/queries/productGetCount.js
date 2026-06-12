@@ -10,7 +10,6 @@ async function productGetCount(){
     try{
         const [count] = await connection.execute(selectQuery);
         const countObject = count[0];
-        console.log(countObject["COUNT(products.id)"]);
         return {result:countObject["COUNT(products.id)"], error: null};
     }
     catch{
