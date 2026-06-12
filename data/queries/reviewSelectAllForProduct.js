@@ -6,7 +6,8 @@ async function reviewSelectAllForProduct(slug){
     FROM reviews as r
     JOIN products as p
     ON p.id = r.product_id
-    WHERE p.slug = ?;
+    WHERE p.slug = ?
+    ORDER BY vote;
     `;
 
     try{

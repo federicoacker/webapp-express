@@ -1,55 +1,48 @@
 import connection from "../db.js"
+import incorporateProducts from "../../utils_js/functions/incorporateProducts.js";
 
-async function productSelectAll() {
+async function productSelectAll(options) {
+    const { validatedOrderBy, validatedOrder, validatedOffset, validatedCategory, validatedSearch } = options;
+    let where="WHERE 1 ";
+    let orderString="";
+    let offsetString = "OFFSET 0";
+    if(validatedSearch){
+        where += `AND p.name LIKE "%${validatedSearch}%" OR p.description LIKE "%${validatedSearch}%"`;
+    }
+    if(validatedCategory){
+        where += `AND c.slug = "${validatedCategory}"`;
+    }
+    if(validatedOrderBy && validatedOrder){
+        orderString = `ORDER BY ${validatedOrderBy} ${validatedOrder}`;
+    }
+    if(validatedOffset){
+        offsetString = `OFFSET ${validatedOffset}`;
+    }
     const querySelectProducts = `
-    SELECT name, description, price, image, slug, id, updated_at
-    FROM products
-    ORDER BY updated_at
-    `;
-    const querySelectCategories = `
-    SELECT categories.label, categories.slug, category_product.product_id, category_product.category_id
-    FROM categories
-    JOIN category_product
-    ON categories.id = category_product.category_id
+    SELECT p.name, p.description, p.price, p.image, p.slug, p.id, p.updated_at, p.created_at, c.label as categoryLabel, c.slug as categorySlug
+    FROM products p
+    JOIN category_product cp
+    ON cp.product_id = p.id
+    JOIN categories c
+    ON cp.category_id = c.id
+    ${where}
+    ${orderString}
+    LIMIT 10 ${offsetString};
     `;
 
     try {
         const [products] = await connection.execute(querySelectProducts);
-        const [categories] = await connection.execute(querySelectCategories);
+        
+        const normalizedProducts = incorporateProducts(products);
 
-        if(products.length === 0){
-            return {result:null, error:404};
-        }
-        if(categories.length === 0){
-            return {result:null, error:500};
+        if (products.length === 0) {
+            return { result: null, error: 404 };
         }
 
-        for (const product of products){
-            product.categories = [];
-        }
-
-        for(const category of categories){
-            const connectedProduct = products.find(product => product.id === category.product_id);
-            if(connectedProduct){
-                connectedProduct.categories.push({label:category.label, slug:category.slug});
-            }
-        }
-        const mappedProducts = products.map(product=> {
-            return {
-                name: product.name,
-                description: product.description,
-                image: process.env.PRODUCT_STATIC_PATH + product.image,
-                slug: product.slug,
-                price: parseFloat(product.price),
-                categories: product.categories,
-                updated_at: product.updated_at
-            };
-        })
-
-        return {result:mappedProducts, error:null};
+        return { result: normalizedProducts, error: null };
 
     } catch (error) {
-        return{result:null, error:500};
+        return { result: null, error: 500 };
     }
 }
 export default productSelectAll

@@ -10,7 +10,8 @@ const productController = {
 }
 
 async function index(request, response) {
-    const {result, error} = await productSelectAll();
+    const options = request.validatedQuery || {};
+    const {result, error} = await productSelectAll(options);
 
     if(error === 404){
         return response.status(404).json({
