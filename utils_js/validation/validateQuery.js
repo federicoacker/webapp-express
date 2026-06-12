@@ -55,10 +55,7 @@ async function validateQuery(queryObject) {
                 }
                 break;
             case "search":
-                validatedSearch = validateString(queryObject["search"].toLowerCase())
-                if (!validatedSearch) {
-                    errors.push("Il valore inserito nella search è errato");
-                }
+                validatedSearch = (queryObject["search"].toLowerCase());
                 break;
             case "limit":
                 validatedLimit = validateNumber(parseInt(queryObject["limit"]));
