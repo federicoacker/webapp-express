@@ -8,7 +8,7 @@ async function productSelectAll(options) {
     let offsetString = "OFFSET 0";
     let limitString = "LIMIT 10";
     if(validatedSearch){
-        where += `AND p.name LIKE "%${validatedSearch}%" OR p.description LIKE "%${validatedSearch}%"`;
+        where += `AND ( p.name LIKE "%${validatedSearch}%" OR p.description LIKE "%${validatedSearch}%" )`;
     }
     if(validatedCategory){
         where += `AND c.slug = "${validatedCategory}"`;
