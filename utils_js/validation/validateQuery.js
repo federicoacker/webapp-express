@@ -8,14 +8,13 @@ async function validateQuery(queryObject) {
     if (keys.length === 0) {
         return { result: {}, errors: [] };
     }
-    const acceptedOrderBys = ["created_at", "updated_at", "name", "categoryLabel"];
+    const acceptedOrderBys = ["created_at", "updated_at", "name", "categorylabel"];
     const acceptedOrders = ["asc", "desc"];
     const { result, error } = await categoriesSelectAll();
     if (error) {
         return { result: {}, errors: ["C'è stato un problema nel fetch delle categorie"] };
     }
     const acceptedCategories = result.map(category => category.label.toLowerCase());
-    console.log(acceptedCategories);
     let errors = [];
 
     let validatedOrderBy;
@@ -23,6 +22,8 @@ async function validateQuery(queryObject) {
     let validatedOffset;
     let validatedCategory;
     let validatedSearch;
+    let validatedLimit;
+
     for (const key of keys) {
         switch (key) {
             case "orderBy":
@@ -55,8 +56,14 @@ async function validateQuery(queryObject) {
                     errors.push("Il valore inserito nella search è errato");
                 }
                 break;
+            case "limit":
+                validatedLimit = validateNumber(parseInt(queryObject["limit"]));
+                if(!validatedLimit || validatedLimit > 10){
+                    errors.push("Il valore di limit non è valido, deve essere un numero e al massimo 10");
+                }
+                break;
+
             default:
-                console.log(key);
                 errors.push(`La chiave ${key} non è un parametro di query accettato`);
                 break;
         }
@@ -68,7 +75,8 @@ async function validateQuery(queryObject) {
         validatedOrder,
         validatedOffset,
         validatedCategory,
-        validatedSearch
+        validatedSearch,
+        validatedLimit
     }
 
     if (errors.length > 0) {

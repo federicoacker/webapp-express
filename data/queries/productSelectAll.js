@@ -2,10 +2,11 @@ import connection from "../db.js"
 import incorporateProducts from "../../utils_js/functions/incorporateProducts.js";
 
 async function productSelectAll(options) {
-    const { validatedOrderBy, validatedOrder, validatedOffset, validatedCategory, validatedSearch } = options;
+    const { validatedLimit, validatedOrderBy, validatedOrder, validatedOffset, validatedCategory, validatedSearch } = options;
     let where="WHERE 1 ";
     let orderString="";
     let offsetString = "OFFSET 0";
+    let limitString = "LIMIT 10";
     if(validatedSearch){
         where += `AND p.name LIKE "%${validatedSearch}%" OR p.description LIKE "%${validatedSearch}%"`;
     }
@@ -18,6 +19,9 @@ async function productSelectAll(options) {
     if(validatedOffset){
         offsetString = `OFFSET ${validatedOffset}`;
     }
+    if(validatedLimit){
+        limitString = `LIMIT ${validatedLimit}`;
+    }
     const querySelectProducts = `
     SELECT p.name, p.description, p.price, p.image, p.slug, p.id, p.updated_at, p.created_at, c.label as categoryLabel, c.slug as categorySlug
     FROM products p
@@ -27,7 +31,7 @@ async function productSelectAll(options) {
     ON cp.category_id = c.id
     ${where}
     ${orderString}
-    LIMIT 10 ${offsetString};
+    ${limitString} ${offsetString};
     `;
 
     try {

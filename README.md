@@ -42,6 +42,20 @@ Il regno dei panini e degli hamburger d'altri tempi. Selezioniamo solo le miglio
       }
     ```
 
+    Questo endpoint accetta le seguenti queries:
+    - `orderBy` che se usata deve SEMPRE anche aver `order`
+        - `orderBy` accetta un valore qualsiasi tra `created_at` `updated_at` `name` `categorylabel`
+        - `order` accetta solo `asc` o `desc`
+
+    - `offset` un valore numerico per decidere l'offset dei prodotti da recuperare e.g `offset = 10` ci mostrerà solo i prodotti dal 10 in poi
+
+    - `limit` di default è impostato a 10 ma se passi `limit=5`nella query, ti restituirà solo 5 valori (deve essere un numero e non può essere superiore a 10);
+
+    - `search` stringa di ricerca che può essere passata alla query, controllerà se c'è un valore simile a quello passato nel nome o nella descrizione dell'oggetto
+
+    - `category` stringa di ricerca per categoria, se gli passi ad esempio  `category=bites` lui ti restituirà solo i prodotti di quella categoria 
+           - N.B. Il controllo viene fatto sullo slug della categoria, non sul nome, quindi per ora che abbiamo categorie con il label uguale allo slug, nessun problema, ma se mai avessimo categorie con label tipo `Burgers Piccanti`, bisognerà passare invece lo slug `burgers-piccanti`
+
   - **GET** `/:productSlug` = Mostra un prodotto in particolare individuato dalla slug. Restituisce un oggetto che contiener "error" e "result":
 
     ```javascript
