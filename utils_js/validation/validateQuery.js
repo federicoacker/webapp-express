@@ -46,6 +46,10 @@ async function validateQuery(queryObject) {
                 break;
             case "category":
                 validatedCategory = validateString(queryObject["category"].toLowerCase());
+                if(validatedCategory === "any"){
+                    validatedCategory = undefined;
+                    break;
+                }
                 if (!validatedCategory || !acceptedCategories.includes(validatedCategory)) {
                     errors.push("Il valore inserito in category è errato");
                 }
@@ -78,6 +82,7 @@ async function validateQuery(queryObject) {
         validatedSearch,
         validatedLimit
     }
+    console.log(validatedQueryObject);
 
     if (errors.length > 0) {
         return { result: null, errors };
