@@ -8,7 +8,7 @@ async function validateQuery(queryObject) {
     if (keys.length === 0) {
         return { result: {}, errors: [] };
     }
-    const acceptedOrderBys = ["created_at", "updated_at", "name", "categorylabel"];
+    const acceptedOrderBys = ["created_at", "updated_at", "name", "categoryslug"];
     const acceptedOrders = ["asc", "desc"];
     const { result, error } = await categoriesSelectAll();
     if (error) {
