@@ -8,6 +8,8 @@ const productRouter = express.Router();
 
 productRouter.get("/", [validateProductQueries, productController.index]);
 
+productRouter.get("/count", [productController.count]);
+
 productRouter.get("/:productSlug", [checkProductSlugExists, productController.show]);
 
 productRouter.delete("/:productSlug",  [checkProductSlugExists, productController.destroy]);

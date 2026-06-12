@@ -40,8 +40,8 @@ async function validateQuery(queryObject) {
                 break;
             case "offset":
                 validatedOffset = validateNumber(parseInt(queryObject["offset"]));
-                if (!validatedOffset) {
-                    errors.push("Il valore inserito in offset è errato");
+                if (validatedOffset === null) {
+                    errors.push(`Il valore inserito in offset è errato: ${validatedOffset}`);
                 }
                 break;
             case "category":

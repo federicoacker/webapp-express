@@ -2,11 +2,13 @@ import connection from "../data/db.js";
 import productSelectAll from "../data/queries/productSelectAll.js";
 import deleteProducts from "../data/queries/deleteProducts.js";
 import getProductBySlug from "../data/queries/getProductBySlug.js"
+import productGetCount from "../data/queries/productGetCount.js";
 
 const productController = {
     index,
     show,
-    destroy
+    destroy,
+    count
 }
 
 async function index(request, response) {
@@ -77,6 +79,22 @@ async function destroy(request, response) {
     }
 
     response.sendStatus(204);
+}
+
+async function count(request, response){
+    const {result : count, error} = await productGetCount();
+    if(error === 500){
+        return response.status(500).json({
+            result:null,
+            error:"C'è stato un problema nel fetch dei prodotti"
+        });
+    }
+
+    return response.json({
+        result:count,
+        error:null
+    });
+
 }
 
 export default productController;
