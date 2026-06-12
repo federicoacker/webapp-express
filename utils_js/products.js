@@ -392,7 +392,6 @@ async function insertIntoDB(){
     const [dbProducts] = await connection.execute(selectProducts);
     const [dbCategories] = await connection.execute(selectCategories);
 
-    console.log(dbProducts);
     for(const product of products){
         const connectedCategoryId = dbCategories.find(category => product.categories.includes(category.slug))?.id;
         const connectedProductId = dbProducts.find(dbProduct => dbProduct.slug === product.slug)?.id;
