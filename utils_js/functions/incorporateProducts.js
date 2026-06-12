@@ -55,7 +55,7 @@ function mapProducts(products) {
             name:product.name,
             description:product.description,
             price:parseFloat(product.price),
-            image:product.image,
+            image:`${process.env.PRODUCT_STATIC_PATH}/${product.image}`,
             slug:product.slug,
             categories:product.categories
         };
