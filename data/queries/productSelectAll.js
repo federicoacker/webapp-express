@@ -33,7 +33,6 @@ async function productSelectAll(options) {
     ${orderString}
     ${limitString} ${offsetString};
     `;
-    console.log(querySelectProducts);
 
     try {
         const [products] = await connection.execute(querySelectProducts);
