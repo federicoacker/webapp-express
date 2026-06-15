@@ -22,7 +22,8 @@ function switchValidator(key, reviewPayload){
             break;
         case "likes":
             result = validateNumber(reviewPayload[key]);
-            if(!result || result < 0){
+            if(result === null || result < 0){
+                console.log(result);
                 return "I likes inseriti non sono validi";
             }
             break;
