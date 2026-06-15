@@ -14,7 +14,7 @@ async function validateQuery(queryObject) {
     if (error) {
         return { result: {}, errors: ["C'è stato un problema nel fetch delle categorie"] };
     }
-    const acceptedCategories = result.map(category => category.label.toLowerCase());
+    const acceptedCategories = result.map(category => category.slug.toLowerCase());
     let errors = [];
 
     let validatedOrderBy;

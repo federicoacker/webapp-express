@@ -412,3 +412,4 @@ async function insertIntoDB(){
 
 await insertIntoDB();
 export default products;
+ 
