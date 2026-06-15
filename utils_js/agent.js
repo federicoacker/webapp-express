@@ -2,6 +2,7 @@ import { ChatAnthropic } from "@langchain/anthropic";
 import { createAgent, HumanMessage } from "langchain";
 import connection from "../data/db.js"
 import productSelectAll from "../data/queries/productSelectAll.js";
+import { validateNumber } from "./validation/validateNumber.js";
 
 const model = new ChatAnthropic({
     model:"claude-haiku-4-5-20251001",
@@ -13,20 +14,24 @@ const BASE_SYSTEM_PROMPT = "Sei l'assistente personale dei clienti in una hambur
 
 const agent = createAgent({
     model,
-    tools:[],
-    systemPrompt:"Sei l'assistente personale dei clienti in una hamburgheria a tema dinosauro, quindi rispondi sempre dando anche informazioni su un dinosauro chiesto dal cliente (se te lo chiede)"
-})
+    apiKey:process.env.CLAUDE_API_KEY,
+    tools:[]
+});
 
 
 async function getMenuContext(limit = 5) {
-    const { result, error } = await productSelectAll({ validatedLimit: limit });
+    const validatedLimit = validateNumber(limit);
+    const { result, error } = await productSelectAll({validatedLimit});
 
-    if (error || !result?.length) {
-        return "Nessun prodotto disponibile in questo momento";
+    if (error === 500) {
+        return "Errore nel fetch dei dati dal database";
+    }
+    if (error === 404) {
+        return "Non ci sono dati nel database";
     }
 
     return result
-        .map((product, index) => `${index + 1}. ${product.name} (€${product.price}) - slug ${product.slug}`)
+        .map((product, index) => `${index + 1}. ${product.name} (€${product.price}) - slug ${product.slug} - description ${product.description}`)
         .join("\n");
 }
 
@@ -63,12 +68,8 @@ async function callClaude(userMessage){
     let answerText = "";
     if(typeof lastMessage?.content === "string") {
         answerText = lastMessage.content;
-    }else if (Array.isArray(lastMessage?.content)){
-        answerText = lastMessage.content
-            .map((chunk) => chunk?.text || "")
-            .join("")
-            .trim();
-    }else {
+    }
+    else {
         answerText = "Non sono riuscito a generare una risposta valida.";
     }
 
