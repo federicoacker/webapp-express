@@ -2,7 +2,7 @@ import { validateNumber } from "./validateNumber.js";
 import { validateString } from "./validateString.js";
 
 const validFields = new Set(
-    ["title", "description", "vote", "likes"]
+    ["title", "description", "vote", "likes", "image"]
 );
 
 function switchValidator(key, reviewPayload){

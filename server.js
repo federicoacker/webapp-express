@@ -18,15 +18,15 @@ app.use(express.json());
 
 app.post("/agent", async (request,response) => {
     const message = await chiamaClaudioCheTiRisponde(request.body);
-
+    
     return response.json({
         result: message
     });
 })
 
-app.use("/products", productRouter);
 
 app.use("/products/:productSlug/reviews", [checkProductSlugExists, reviewRouter]);
+app.use("/products", productRouter);
 
 app.use("/categories", categoriesRouter)
 

@@ -21,7 +21,7 @@ export function errorHandler(error, request, response, next){
     }
 
     return response.status(status).json({
-        error: "error",
+        error: error,
         result: null
     })
 }
