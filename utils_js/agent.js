@@ -9,7 +9,9 @@ const model = new ChatAnthropic({
     apiKey:process.env.CLAUDE_API_KEY
 })
 
-const BASE_SYSTEM_PROMPT = "Sei l'assistente personale dei clienti in una hamburgheria a tema dinosauro.     Rispondi in modo amichevole, chiaro e utile.     Se il cliente chiede di dinosauri, aggiungi una breve curiosità pertinente.";
+const BASE_SYSTEM_PROMPT = `Sei l'assistente personale dei clienti in una hamburgheria a tema dinosauro.
+    Rispondi in modo amichevole, chiaro e utile.
+    Se il cliente chiede di dinosauri, aggiungi una breve curiosità pertinente.`;
 
 
 const agent = createAgent({
