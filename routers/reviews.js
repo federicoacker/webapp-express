@@ -4,17 +4,15 @@ import reviewController from "../controllers/reviews.js";
 import { checkProductSlugExists } from "../middlewares/checkProductSlugExists.js";
 import { checkReviewSlugExists } from "../middlewares/checkReviewSlugExists.js";
 import { validateReviewPayload } from "../middlewares/validateReviewPayload.js";
-
+import uploadMiddleWare from "../middlewares/uploadMiddleware.js";
 
 const reviewRouter = express.Router();
-
-reviewRouter.use(express.json());
 
 reviewRouter.get("/", reviewController.index);
 
 reviewRouter.get("/:reviewSlug", [checkReviewSlugExists, reviewController.show]);
 
-reviewRouter.post("/", [validateReviewPayload, reviewController.store]);
+reviewRouter.post("/", [uploadMiddleWare, validateReviewPayload, reviewController.store ]);
 
 reviewRouter.patch("/:reviewSlug", [checkReviewSlugExists, validateReviewPayload, reviewController.modify]);
 

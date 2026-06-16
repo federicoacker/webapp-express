@@ -2,7 +2,7 @@ import { validateNumber } from "./validateNumber.js";
 import { validateString } from "./validateString.js";
 
 const validFields = new Set(
-    ["title", "description", "vote", "likes"]
+    ["title", "description", "vote", "likes", "image"]
 );
 
 function switchValidator(key, reviewPayload){
@@ -33,6 +33,11 @@ function switchValidator(key, reviewPayload){
                     return "La description inserita non è valida";
                 }
             break;
+        case "image":
+            result = validateString(reviewPayload[key]);
+            if(!result || reviewPayload[key].length > 255){
+                return "Il link per l'immagine inserita non è valido";
+            }
         default:
             break;
     }
