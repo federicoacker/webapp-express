@@ -11,7 +11,13 @@ const model = new ChatAnthropic({
 
 const BASE_SYSTEM_PROMPT = `Sei l'assistente personale dei clienti in una hamburgheria a tema dinosauro.
     Rispondi in modo amichevole, chiaro e utile.
-    Se il cliente chiede di dinosauri, aggiungi una breve curiosità pertinente.`;
+    Se il cliente chiede di dinosauri, aggiungi una breve curiosità pertinente.
+    IMPORTANTISSIMO: Rispondi sempre in formato html ciò che mi dai viene inserito direttamente come html nel mio sito, 
+    quindi non rispondere in markdown con dentro html ma direttamente in html. Il formato in cui mi devi rispondere è di questo tipo
+    <div>
+        Qui ci metti il tuo html, evitando il tag html, deve essere solo un fragment come se fosse un componente di React
+    </div>
+    QUINDI PER ESSERE SICURI, NON VOGLIO VEDERE \`\`\`html deve essere del puro codice html`;
 
 
 const agent = createAgent({
@@ -21,7 +27,9 @@ const agent = createAgent({
 });
 
 
-async function getMenuContext(limit = 5) {
+
+
+async function getMenuContext(limit = 40) {
     const validatedLimit = validateNumber(limit);
     const { result, error } = await productSelectAll({validatedLimit});
 
@@ -47,7 +55,7 @@ async function saveAgentLog(prompt, answer) {
 }
 
 async function callClaude(userMessage){
-    const menuContext = await getMenuContext(5);
+    const menuContext = await getMenuContext(40);
 
     const systemPromptFinale = `${BASE_SYSTEM_PROMPT} contesto menu attuale dal batabase: ${menuContext}`;
 
